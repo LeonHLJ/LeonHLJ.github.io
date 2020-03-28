@@ -85,13 +85,6 @@ Part-aligned Pose-guided Recurrent Network for Action Recognition,
 
 Pattern Recognition (**PR**), 2019.
 
-<details>
-  <summary> ppp </summary>
-  Your content here...
-  > markup like blockquote's should even work on github!
-  more content here...
-</details>
-
 [<a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320319301098">PDF</a>]
 [<a href="javascript:toggleBibtex('P2RN_abstract')" target="_self">Abstract</a>]
 [<a href="javascript:toggleBibtex('P2RN_bib')" target="_self">Bibtex</a>]
