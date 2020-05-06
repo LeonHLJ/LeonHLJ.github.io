@@ -64,7 +64,7 @@ American Association for AI National Conference (**AAAI Oral**), 2020.
 </div>
 <div class="blockcontent" id="PL_GCN_bib" style="display:none"> 
 <pre>
-@article{huangpart,
+@inproceedings{huangpart,
   title={Part-Level Graph Convolutional Network for Skeleton-Based Action Recognition},
   author={Huang, Linjiang and Huang, Yan and Ouyang, Wanli and Wang, Liang},
   booktitle={Thirty-fourth AAAI conference on artificial intelligence},
@@ -92,7 +92,7 @@ Unlike the previous method, we propose to achieve action-background separation o
 </div>
 <div class="blockcontent" id="RPN_bib" style="display:none"> 
 <pre>
-@article{huangrelational,
+@inproceedings{huangrelational,
   title={Relational Prototypical Network for Weakly Supervised Temporal Action Localization},
   author={Huang, Linjiang and Huang, Yan and Ouyang, Wanli and Wang, Liang},
   booktitle={Thirty-fourth AAAI conference on artificial intelligence},
