@@ -12,7 +12,7 @@ layout: archive
 
 <hr style="width:80%;text-align:left;margin-left:0">
 
-I'm now an associate professor at the Institute of Artificial Intelligence, Beihang University.
+I'm now a Professor at the Institute of Artificial Intelligence, Beihang University.
 
 I work with with [Prof. Hongsheng Li](https://scholar.google.com/citations?user=BN2Ze-QAAAAJ&hl=zh-TW&oi=ao) as a post-doctoral fellow in [Multi-Media Lab (MMLab)](http://mmlab.ie.cuhk.edu.hk/) at The Chinese University of Hong Kong (CUHK) and Centre for Perceptual and Interactive Intelligence (CPII) from 2020 to 2024. 
 
