@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linjiang Huang - Academic Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fafafa;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #64648c;
+            --accent-1: #6366f1;
+            --accent-2: #8b5cf6;
+            --accent-3: #06b6d4;
+            --accent-4: #10b981;
+            --accent-5: #f59e0b;
+            --border: #e5e5f0;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            --gradient-2: linear-gradient(135deg, #f0f0ff 0%, #faf5ff 50%, #ecfeff 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.02) 0%, transparent 40%);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+        }
+
+        nav .logo {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 0.25rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        nav ul a:hover {
+            background: var(--gradient-2);
+            color: var(--accent-1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--gradient-1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .profile-card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 100px;
+            text-align: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--card);
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar svg {
+            width: 50%;
+            height: 50%;
+            color: #c7c7d9;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-title {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--gradient-2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent-1);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-4);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--gradient-2);
+            transform: translateX(4px);
+        }
+
+        .contact-link i {
+            width: 18px;
+            color: var(--accent-1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--gradient-1);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .about-content {
+            padding-top: 1rem;
+        }
+
+        .greeting {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-2);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--accent-1);
+            margin-bottom: 1rem;
+        }
+
+        .greeting span {
+            animation: wave 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        .about-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content h1 .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.0625rem;
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+
+        .about-text a {
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .about-text a:hover {
+            text-decoration: underline;
+        }
+
+        .interests-section {
+            margin-top: 2.5rem;
+        }
+
+        .interests-section h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .interest-tag {
+            padding: 0.5rem 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .interest-tag:hover {
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 5rem 2rem;
+        }
+
+        section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .section-header .line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-pill {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text-secondary);
+            border-radius: 100px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+        }
+
+        .filter-pill.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        .publications-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pub-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            transition: all 0.3s ease;
+        }
+
+        .pub-card:hover {
+            border-color: transparent;
+            box-shadow: 0 0 0 1px var(--accent-1), 0 20px 40px -20px rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .pub-media {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f0f0ff, #faf5ff);
+        }
+
+        .pub-media img,
+        .pub-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .pub-card:hover .pub-media img,
+        .pub-card:hover .pub-media video {
+            transform: scale(1.1);
+        }
+
+        .pub-media-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pub-media:hover .pub-media-overlay {
+            opacity: 1;
+        }
+
+        .pub-media-overlay i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .pub-content {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .pub-badges {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-venue {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.625rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .venue-purple { background: linear-gradient(135deg, #ede9fe, #f3e8ff); color: #7c3aed; }
+        .venue-blue { background: linear-gradient(135deg, #dbeafe, #e0f2fe); color: #2563eb; }
+        .venue-green { background: linear-gradient(135deg, #dcfce7, #d1fae5); color: #16a34a; }
+        .venue-orange { background: linear-gradient(135deg, #ffedd5, #fef3c7); color: #ea580c; }
+        .venue-teal { background: linear-gradient(135deg, #ccfbf1, #cffafe); color: #0d9488; }
+
+        .pub-tag {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            padding: 0.2rem 0.5rem;
+            background: var(--bg);
+            border-radius: 4px;
+        }
+
+        .pub-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.375rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .pub-authors {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .pub-authors b {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .pub-link:hover {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        #news {
+            background: var(--card);
+        }
+
+        .news-timeline {
+            max-width: 700px;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .news-timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-1);
+            border-radius: 1px;
+        }
+
+        .news-item {
+            position: relative;
+            padding: 1rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .news-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 1.25rem;
+            width: 16px;
+            height: 16px;
+            background: var(--card);
+            border: 3px solid var(--accent-1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .news-item:first-child::before {
+            background: var(--gradient-1);
+            border: none;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .news-date {
+            flex-shrink: 0;
+            width: 80px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-1);
+        }
+
+        .news-text {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .news-badge {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            background: var(--gradient-1);
+            color: white;
+            font-size: 0.625rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .media-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .media-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-content img,
+        .modal-content video {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        .modal-title {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 24px;
+            right: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .modal-nav:hover { background: rgba(255, 255, 255, 0.2); }
+        .modal-nav.prev { left: 24px; }
+        .modal-nav.next { right: 24px; }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        footer .heart {
+            color: #ef4444;
+        }
+
+        @media (max-width: 900px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-card {
+                position: static;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .about-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .pub-card {
+                grid-template-columns: 160px 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav .container {
+                padding: 0.5rem;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: calc(100% + 0.5rem);
+                left: 1rem;
+                right: 1rem;
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                flex-direction: column;
+                padding: 0.5rem;
+            }
+
+            nav ul.active { display: flex; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+
+            .pub-card {
+                grid-template-columns: 1fr;
+            }
+
+            .pub-media {
+                aspect-ratio: 16/9;
+            }
+
+            .about-content h1 { font-size: 1.75rem; }
+            .modal-nav.prev { left: 10px; }
+            .modal-nav.next { right: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">LJ.Huang</a>
+            <ul id="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#news">News</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <div class="avatar">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="profile-name">Linjiang Huang</h2>
+                <p class="profile-title">Professor @ Beihang University</p>
+                <div class="profile-badge">Available for collaboration</div>
+                
+                <div class="contact-links">
+                    <a href="mailto:linjianghuang@outlook.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        linjianghuang@outlook.com
+                    </a>
+                    <a href="https://scholar.google.com/" class="contact-link" target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                        Google Scholar
+                    </a>
+                    <a href="https://github.com/LeonHLJ" class="contact-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        github.com/LeonHLJ
+                    </a>
+                </div>
+
+                <div class="social-icons">
+                    <a href="mailto:linjianghuang@outlook.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="https://scholar.google.com/" class="social-icon" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://github.com/LeonHLJ" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="greeting"><span>👋</span> Hello, I'm</div>
+                <h1>A Researcher in <span class="highlight">Embodied AI</span> & <span class="highlight">Generative AI</span></h1>
+                
+                <p class="about-text">
+                    I'm now a Professor at the <a href="#">Institute of Artificial Intelligence</a>, <a href="#">Beihang University</a>.
+                </p>
+                <p class="about-text">
+                    I worked with <a href="#">Prof. Hongsheng Li</a> as a post-doctoral fellow in <a href="#">Multi-Media Lab (MMLab)</a> at The Chinese University of Hong Kong (CUHK) and <a href="#">Centre for Perceptual and Interactive Intelligence (CPII)</a> from 2020 to 2024.
+                </p>
+                <p class="about-text">
+                    I received my Ph.D. Degree from <a href="#">Institute of Automation, Chinese Academy of Sciences (CASIA)</a> in 2020, advised by <a href="#">Prof. Liang Wang</a>, and my Bachelor and Master Degree from <a href="#">Huazhong University of Science and Technology (HUST)</a> in 2014 and 2017, respectively.
+                </p>
+                <p class="about-text">
+                    My current research interests include <strong>embodied AI</strong> and <strong>generative AI</strong>.
+                </p>
+
+                <div class="interests-section">
+                    <h3>Research Interests</h3>
+                    <div class="interest-tags">
+                        <span class="interest-tag">🤖 Embodied Intelligence</span>
+                        <span class="interest-tag">💬 LLM</span>
+                        <span class="interest-tag">👁️ MLLM</span>
+                        <span class="interest-tag">🎨 Diffusion Model</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <div class="section-header">
+                <h2>Publications</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="filter-pills">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="Diffusion">Diffusion</button>
+                <button class="filter-pill" data-filter="MLLM">MLLM</button>
+                <button class="filter-pill" data-filter="3D Vision">3D Vision</button>
+                <button class="filter-pill" data-filter="Action">Action</button>
+                <button class="filter-pill" data-filter="Autonomous Driving">Driving</button>
+                <button class="filter-pill" data-filter="Detection">Detection</button>
+            </div>
+
+            <div class="publications-grid" id="publications-grid"></div>
+        </div>
+    </section>
+
+    <section id="news">
+        <div class="container">
+            <div class="section-header">
+                <h2>News</h2>
+                <div class="line"></div>
+            </div>
+            <div class="news-timeline" id="news-list"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with <span class="heart">♥</span> by Linjiang Huang · © 2025</p>
+    </footer>
+
+    <div class="media-modal" id="media-modal">
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        <button class="modal-nav prev" onclick="navigateModal(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-nav next" onclick="navigateModal(1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="modal-content">
+            <div id="modal-media-container"></div>
+            <p class="modal-title" id="modal-title"></p>
+        </div>
+    </div>
+
+    <script>
+        const publications = [
+            { title: "NopeRoomGS: Pose-Free Indoor 3D Gaussian Splatting via Local-to-Global Optimization", authors: "Wenbo Li, Yan Xu, ..., <b>Linjiang Huang</b>, Hongsheng Li", venue: "NeurIPS 2025", venueColor: "purple", tag: "3D Vision", media: "images/NeurIPS2025_NopeRoomGS.png", mediaType: "image" },
+            { title: "GoT: Unleashing Reasoning Capability of MLLM for Visual Generation and Editing", authors: "Rongyao Fang, ..., <b>Linjiang Huang</b>, ...", venue: "NeurIPS 2025", venueColor: "purple", tag: "MLLM", media: "images/NeurIPS2025_GoT.gif", mediaType: "gif", codeUrl: "https://github.com/rongyaofang/GoT" },
+            { title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation", authors: "Ruipu Wu, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "ACM MM 2025", venueColor: "blue", tag: "VLN", media: "images/AeroDuo_MM2025.png", mediaType: "image" },
+            { title: "PUMA: Empowering Unified MLLM with Multi-granular Visual Generation", authors: "Rongyao Fang, ..., <b>Linjiang Huang</b>, ...", venue: "ICCV 2025", venueColor: "green", tag: "MLLM", media: "images/PUMA_ICCV2025.mp4", mediaType: "video", codeUrl: "https://github.com/rongyaofang/PUMA" },
+            { title: "FreeDNA: Training-Free Domain Noise Alignment for Domain Adaptation", authors: "Hang Xu, ..., <b>Linjiang Huang</b>, ...", venue: "ICCV 2025", venueColor: "green", tag: "Diffusion", media: "images/FreeDNA_ICCV2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2506.22509", codeUrl: "https://github.com/xuhang07/FreeDNA" },
+            { title: "SOLVE: Synergy of Language-Vision and End-to-End Networks for Autonomous Driving", authors: "Xuesong Chen*, <b>Linjiang Huang*</b>, ...", venue: "CVPR 2025", venueColor: "blue", tag: "Autonomous Driving", media: "images/CVPR2025_SOLVE.png", mediaType: "image" },
+            { title: "FlexDrive: Toward Trajectory Flexibility in Driving Scene Reconstruction", authors: "Jingqiu Zhou, ..., <b>Linjiang Huang</b>, ...", venue: "CVPR 2025", venueColor: "blue", tag: "3D Vision", media: "images/CVPR2025_FlexDrive.png", mediaType: "image" },
+            { title: "GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance", authors: "Jingqiu Zhou, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "AAAI 2025", venueColor: "orange", tag: "3D Vision", media: "images/AAAI_3DGS.png", mediaType: "image" },
+            { title: "Localization and Recognition of Human Action in 3D Using Transformers", authors: "Jiankai Sun, <b>Linjiang Huang</b>, ...", venue: "Comm. Eng. 2024", venueColor: "teal", tag: "Action", media: "images/CommEng2024.png", mediaType: "image", paperUrl: "https://www.nature.com/articles/s44172-024-00272-7", codeUrl: "https://github.com/locate-bench/locate" },
+            { title: "FouriScale: A Frequency Perspective on Training-Free High-Resolution Image Synthesis", authors: "<b>Linjiang Huang</b>, Rongyao Fang, ...", venue: "ECCV 2024", venueColor: "purple", tag: "Diffusion", media: "images/ECCV2024.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2403.12963", codeUrl: "https://github.com/LeonHLJ/FouriScale" },
+            { title: "Teach-DETR: Better Training DETR with Teachers", authors: "<b>Linjiang Huang</b>, Kaixin Lu, ...", venue: "TPAMI 2023", venueColor: "purple", tag: "Detection", media: "images/TPAMI2023.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10264211/", codeUrl: "https://github.com/LeonHLJ/Teach-DETR" },
+            { title: "Weakly Supervised Temporal Action Localization via Representative Snippet Knowledge Propagation", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "CVPR 2022", venueColor: "blue", tag: "Action", media: "images/CVPR2022.png", mediaType: "image", paperUrl: "#", codeUrl: "https://github.com/LeonHLJ/RSKP" },
+            { title: "Foreground-Action Consistency Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "ICCV 2021", venueColor: "green", tag: "Action", media: "images/ICCV2021.png", mediaType: "image", paperUrl: "#", codeUrl: "https://github.com/LeonHLJ/FAC-Net" },
+            { title: "Relational Prototypical Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "AAAI 2020", venueColor: "orange", tag: "Action", media: "images/AAAI_WSTAL.png", mediaType: "image", paperUrl: "https://ojs.aaai.org/index.php/AAAI/article/view/6760/6614" }
+        ];
+
+        const news = [
+            { date: "Sep 2025", text: "2 papers accepted to NeurIPS 2025!", badge: "New" },
+            { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025!" },
+            { date: "Jun 2025", text: "2 papers accepted to ICCV 2025!" },
+            { date: "Feb 2025", text: "2 papers accepted to CVPR 2025!" },
+            { date: "Dec 2024", text: "1 paper accepted to AAAI 2025!" },
+            { date: "Sep 2024", text: "1 paper accepted to Nature Communications Engineering!" },
+            { date: "Jul 2024", text: "1 paper accepted to ECCV 2024!" },
+            { date: "Sep 2023", text: "1 paper accepted to TPAMI!" }
+        ];
+
+        let currentModalIndex = 0;
+        let filteredPublications = publications;
+
+        function getPlaceholder(title) {
+            const hue = (title.length * 37) % 360;
+            return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:hsl(${hue},70%,95%)"/><stop offset="100%" style="stop-color:hsl(${hue + 40},70%,90%)"/></linearGradient></defs><rect fill="url(#g)" width="400" height="300"/><text x="200" y="150" font-family="system-ui" font-size="11" fill="hsl(${hue},30%,60%)" text-anchor="middle">Paper Figure</text></svg>`)}`;
+        }
+
+        function renderPublications(filter = 'all') {
+            filteredPublications = filter === 'all' ? publications : publications.filter(p => p.tag === filter);
+            
+            document.getElementById('publications-grid').innerHTML = filteredPublications.map((pub, i) => `
+                <div class="pub-card">
+                    <div class="pub-media" onclick="openModal(${i})">
+                        ${pub.mediaType === 'video' 
+                            ? `<video src="${pub.media}" muted loop preload="metadata" onerror="this.poster='${getPlaceholder(pub.title)}'"></video>`
+                            : `<img src="${pub.media}" alt="${pub.title}" onerror="this.src='${getPlaceholder(pub.title)}'">`}
+                        <div class="pub-media-overlay"><i class="fas fa-${pub.mediaType === 'video' ? 'play' : 'expand'}"></i></div>
+                    </div>
+                    <div class="pub-content">
+                        <div class="pub-badges">
+                            <span class="pub-venue venue-${pub.venueColor}">${pub.venue}</span>
+                            <span class="pub-tag">${pub.tag}</span>
+                        </div>
+                        <h3 class="pub-title">${pub.title}</h3>
+                        <p class="pub-authors">${pub.authors}</p>
+                        <div class="pub-links">
+                            ${pub.paperUrl ? `<a href="${pub.paperUrl}" class="pub-link" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>` : ''}
+                            ${pub.codeUrl ? `<a href="${pub.codeUrl}" class="pub-link" target="_blank"><i class="fab fa-github"></i> Code</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.pub-media video').forEach(v => {
+                v.parentElement.addEventListener('mouseenter', () => v.play());
+                v.parentElement.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+            });
+        }
+
+        function renderNews() {
+            document.getElementById('news-list').innerHTML = news.map(n => `
+                <div class="news-item">
+                    <span class="news-date">${n.date}</span>
+                    <span class="news-text">${n.text}${n.badge ? `<span class="news-badge">${n.badge}</span>` : ''}</span>
+                </div>
+            `).join('');
+        }
+
+        document.querySelectorAll('.filter-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderPublications(btn.dataset.filter);
+            });
+        });
+
+        function openModal(i) {
+            currentModalIndex = i;
+            updateModal();
+            document.getElementById('media-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateModal() {
+            const pub = filteredPublications[currentModalIndex];
+            document.getElementById('modal-media-container').innerHTML = pub.mediaType === 'video'
+                ? `<video src="${pub.media}" controls autoplay></video>`
+                : `<img src="${pub.media}" onerror="this.src='${getPlaceholder(pub.title)}'">`;
+            document.getElementById('modal-title').textContent = pub.title;
+        }
+
+        function navigateModal(d) {
+            currentModalIndex = (currentModalIndex + d + filteredPublications.length) % filteredPublications.length;
+            updateModal();
+        }
+
+        function closeModal() {
+            document.getElementById('media-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            const v = document.querySelector('.media-modal video');
+            if (v) v.pause();
+        }
+
+        document.getElementById('media-modal').addEventListener('click', e => { if (e.target.id === 'media-modal') closeModal(); });
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('media-modal').classList.contains('active')) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') navigateModal(-1);
+            if (e.key === 'ArrowRight') navigateModal(1);
+        });
+
+        function toggleMobileMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
+
+        renderPublications();
+        renderNews();
+    </script>
+</body>
+</html>
