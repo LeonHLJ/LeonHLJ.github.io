@@ -182,12 +182,6 @@
             object-fit: cover;
         }
 
-        .avatar svg {
-            width: 50%;
-            height: 50%;
-            color: #c7c7d9;
-        }
-
         .profile-name {
             font-size: 1.5rem;
             font-weight: 700;
@@ -403,36 +397,6 @@
             background: var(--border);
         }
 
-        .filter-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.375rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .filter-pill {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--card);
-            color: var(--text-secondary);
-            border-radius: 100px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.8rem;
-            transition: all 0.2s ease;
-        }
-
-        .filter-pill:hover {
-            border-color: var(--accent-1);
-            color: var(--accent-1);
-        }
-
-        .filter-pill.active {
-            background: var(--gradient-1);
-            border-color: transparent;
-            color: white;
-        }
-
         .publications-grid {
             display: flex;
             flex-direction: column;
@@ -586,6 +550,406 @@
         }
 
         .pub-link:hover {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* All Publications Section */
+        .all-pubs-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .all-pubs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .all-pubs-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .all-pubs-title h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .collapse-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .collapse-toggle:hover {
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+        }
+
+        .collapse-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .collapse-toggle.collapsed i {
+            transform: rotate(180deg);
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .filter-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .filter-pill {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text-secondary);
+            border-radius: 100px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.7rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+        }
+
+        .filter-pill.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Thumbnail Card Style - 120px */
+        .pub-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.625rem;
+            transition: all 0.4s ease;
+        }
+
+        .pub-card-grid.collapsed {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .pub-card-thumb {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .pub-card-thumb:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.2);
+        }
+
+        .pub-card-thumb-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .pub-card-thumb-bg img,
+        .pub-card-thumb-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .pub-card-thumb:hover .pub-card-thumb-bg img,
+        .pub-card-thumb:hover .pub-card-thumb-bg video {
+            transform: scale(1.1);
+        }
+
+        .pub-card-thumb-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.85) 100%
+            );
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .pub-card-thumb:hover .pub-card-thumb-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.75) 100%
+            );
+        }
+
+        .pub-card-thumb-content {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            padding: 0.375rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .pub-card-thumb-badge {
+            position: absolute;
+            top: 0.25rem;
+            left: 0.25rem;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.95);
+            white-space: nowrap;
+        }
+
+        .pub-card-thumb-icon {
+            position: absolute;
+            top: 0.25rem;
+            right: 0.25rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-1);
+            font-size: 0.4rem;
+        }
+
+        .pub-card-thumb-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.56rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Publication detail modal */
+        .pub-detail-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1500;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .pub-detail-modal.active {
+            display: flex;
+        }
+
+        .pub-detail-content {
+            background: var(--card);
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .pub-detail-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .pub-detail-close:hover {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        .pub-detail-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: 1px solid var(--border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pub-detail-nav:hover {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        .pub-detail-nav.prev { left: 16px; }
+        .pub-detail-nav.next { right: 16px; }
+
+        .pub-detail-media {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 24px 24px 0 0;
+            background: linear-gradient(135deg, #f0f0ff, #faf5ff);
+            cursor: pointer;
+        }
+
+        .pub-detail-media img,
+        .pub-detail-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pub-detail-body {
+            padding: 2rem;
+        }
+
+        .pub-detail-badges {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pub-detail-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .pub-detail-authors {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .pub-detail-authors b {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .pub-detail-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .pub-detail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .pub-detail-link:hover {
             background: var(--gradient-1);
             border-color: transparent;
             color: white;
@@ -752,10 +1116,6 @@
             font-size: 0.8rem;
         }
 
-        footer .heart {
-            color: #ef4444;
-        }
-
         @media (max-width: 900px) {
             .hero .container {
                 grid-template-columns: 1fr;
@@ -774,6 +1134,10 @@
 
             .pub-card {
                 grid-template-columns: 160px 1fr;
+            }
+
+            .pub-card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
         }
 
@@ -809,6 +1173,36 @@
             .about-content h1 { font-size: 1.75rem; }
             .modal-nav.prev { left: 10px; }
             .modal-nav.next { right: 10px; }
+
+            .all-pubs-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filter-row {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .pub-detail-content {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+
+            .pub-detail-title {
+                font-size: 1.25rem;
+            }
+
+            .pub-card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 0.5rem;
+            }
+
+            .pub-detail-nav {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -861,7 +1255,6 @@
                     <a href="mailto:ljhuang@buaa.edu.cn" class="social-icon"><i class="fas fa-envelope"></i></a>
                     <a href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" class="social-icon" target="_blank"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://github.com/LeonHLJ" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
-                    <!-- <a href="https://twitter.com/" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a> -->
                 </div>
             </div>
 
@@ -898,22 +1291,34 @@
     <section id="publications">
         <div class="container">
             <div class="section-header">
-                <h2>Publications</h2>
+                <h2>Recent Publications</h2>
                 <div class="line"></div>
             </div>
 
-            <div class="filter-pills">
-                <button class="filter-pill active" data-filter="all">All</button>
-                <button class="filter-pill" data-filter="VLN">VLN</button>
-                <button class="filter-pill" data-filter="Diffusion">Diffusion</button>
-                <button class="filter-pill" data-filter="MLLM">MLLM</button>
-                <button class="filter-pill" data-filter="3D Vision">3D Vision</button>
-                <button class="filter-pill" data-filter="Action">Action</button>
-                <button class="filter-pill" data-filter="Autonomous Driving">Driving</button>
-                <button class="filter-pill" data-filter="Others">Detection</button>
-            </div>
+            <div class="publications-grid" id="recent-publications"></div>
 
-            <div class="publications-grid" id="publications-grid"></div>
+            <div class="all-pubs-section">
+                <div class="all-pubs-header">
+                    <div class="all-pubs-title">
+                        <h3>All Publications</h3>
+                        <button class="collapse-toggle" id="collapse-toggle" onclick="toggleAllPubs()">
+                            <span id="toggle-text">Collapse</span>
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </div>
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <span class="filter-label">Year:</span>
+                            <div class="filter-pills" id="year-filters"></div>
+                        </div>
+                        <div class="filter-group">
+                            <span class="filter-label">Topic:</span>
+                            <div class="filter-pills" id="topic-filters"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pub-card-grid" id="all-publications"></div>
+            </div>
         </div>
     </section>
 
@@ -941,35 +1346,39 @@
         </div>
     </div>
 
+    <div class="pub-detail-modal" id="pub-detail-modal">
+        <div class="pub-detail-content" id="pub-detail-content"></div>
+    </div>
+
     <script>
         const publications = [
-            { title: "VaccineRAG: Boosting Multimodal Large Language Models' Immunity to Harmful RAG Samples", authors: "Qixin Sun, Ziqin Wang, ..., <b>Linjiang Huang (Corresponding)</b>", venue: "AAAI 2026", venueColor: "green", tag: "MLLM", media: "images/AAAI2026_VaccineRAG.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2509.04502"},
-            { title: "NopeRoomGS: Pose-Free Indoor 3D Gaussian Splatting via Local-to-Global Optimization", authors: "Wenbo Li, Yan Xu, ..., <b>Linjiang Huang</b>, Hongsheng Li", venue: "NeurIPS 2025", venueColor: "purple", tag: "3D Vision", media: "images/NeurIPS2025_NopeRoomGS.png", mediaType: "image", paperUrl: "https://openreview.net/pdf?id=SoPSI570Ap"},
-            { title: "GoT: Unleashing Reasoning Capability of MLLM for Visual Generation and Editing", authors: "Rongyao Fang, ..., <b>Linjiang Huang</b>, ...", venue: "NeurIPS 2025", venueColor: "purple", tag: "MLLM", media: "images/NeurIPS2025_GOT.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2503.10639", codeUrl: "https://github.com/rongyaofang/GoT"},
-            { title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation", authors: "Ruipu Wu, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "ACM MM 2025", venueColor: "blue", tag: "VLN", media: "images/AeroDuo_MM2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2508.15232?", codeUrl: "https://rey-nard.github.io/AeroDuo_project/"},
-            { title: "Hi AirStar, Guide Me to the Badminton Court.", authors: "Ziqin Wang, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "ACM MM 2025 Demo", venueColor: "blue", tag: "VLN", media: "images/AirStar_MM2025.mp4", mediaType: "video", paperUrl: "https://arxiv.org/pdf/2507.04430", codeUrl: "https://buaa-colalab.github.io/airstar.github.io/"},
-            { title: "PUMA: Empowering Unified MLLM with Multi-granular Visual Generation", authors: "Rongyao Fang, ..., <b>Linjiang Huang</b>, ...", venue: "ICCV 2025", venueColor: "green", tag: "MLLM", media: "images/PUMA_ICCV2025.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/ICCV2025/papers/Fang_PUMA_Empowering_Unified_MLLM_with_Multi-granular_Visual_Generation_ICCV_2025_paper.pdf", codeUrl: "https://github.com/rongyaofang/PUMA"},
-            { title: "FreeDNA: Training-Free Domain Noise Alignment for Domain Adaptation", authors: "Hang Xu, ..., <b>Linjiang Huang</b>, ...", venue: "ICCV 2025", venueColor: "green", tag: "Diffusion", media: "images/FreeDNA_ICCV2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2506.22509", codeUrl: "https://github.com/xuhang07/FreeDNA"},
-            { title: "SOLVE: Synergy of Language-Vision and End-to-End Networks for Autonomous Driving", authors: "Xuesong Chen*, <b>Linjiang Huang*</b>, ...", venue: "CVPR 2025", venueColor: "blue", tag: "Autonomous Driving", media: "images/CVPR2025_SOLVE.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Chen_SOLVE_Synergy_of_Language-Vision_and_End-to-End_Networks_for_Autonomous_Driving_CVPR_2025_paper.pdf"},
-            { title: "FlexDrive: Toward Trajectory Flexibility in Driving Scene Reconstruction", authors: "Jingqiu Zhou, ..., <b>Linjiang Huang</b>, ...", venue: "CVPR 2025", venueColor: "blue", tag: "3D Vision", media: "images/CVPR2025_FlexDrive.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Zhou_FlexDrive_Toward_Trajectory_Flexibility_in_Driving_Scene_Gaussian_Splatting_Reconstruction_CVPR_2025_paper.pdf", codeUrl: "https://github.com/zhou745/FlexDrive"},
-            { title: "GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance", authors: "Jingqiu Zhou, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "AAAI 2025", venueColor: "orange", tag: "3D Vision", media: "images/AAAI_3DGS.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2506.22509", codeUrl: "https://github.com/zhou745/GaussianPainter"},
-            { title: "Localization and Recognition of Human Action in 3D Using Transformers", authors: "Jiankai Sun, <b>Linjiang Huang</b>, ...", venue: "Comm. Eng. 2024", venueColor: "teal", tag: "Action", media: "images/CommEng2024.png", mediaType: "image", paperUrl: "https://www.nature.com/articles/s44172-024-00272-7", codeUrl: "https://github.com/locate-bench/locate"},
-            { title: "Comprehensive Attribute Prediction Learning for Person Search by Language", authors: "Kai Niu, <b>Linjiang Huang (Corresponding)</b>, ...", venue: "TIP 2024", venueColor: "yellow", tag: "Others", media: "images/TIP2024_CAPL.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10464200/"}
-            { title: "FouriScale: A Frequency Perspective on Training-Free High-Resolution Image Synthesis", authors: "<b>Linjiang Huang</b>, Rongyao Fang, ...", venue: "ECCV 2024", venueColor: "purple", tag: "Diffusion", media: "images/ECCV2024.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2403.12963", codeUrl: "https://github.com/LeonHLJ/FouriScale"},
-            { title: "Teach-DETR: Better Training DETR with Teachers", authors: "<b>Linjiang Huang</b>, Kaixin Lu, ...", venue: "TPAMI 2023", venueColor: "purple", tag: "Others", media: "images/TPAMI2023.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10264211/", codeUrl: "https://github.com/LeonHLJ/Teach-DETR"},
-            { title: "Improving Inconspicuous Attributes Modeling for Person Search by Language", authors: "Kai Niu, Tao Huang, <b>Linjiang Huang (Corresponding)</b>, ...", venue: "TIP 2023", venueColor: "yellow", tag: "Others", media: "images/TIP2023_ASAMN.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10149813/"}
-            { title: "Improving Weakly Supervised Temporal Action Localization by Bridging Train-Test Gap in Pseudo Labels", authors: "Jingqiu Zhou, <b>Linjiang Huang (Corresponding)</b>, ...", venue: "CVPR 2023", venueColor: "blue", tag: "Action", media: "images/CVPR2023_GauFuse.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2023/papers/Zhou_Improving_Weakly_Supervised_Temporal_Action_Localization_by_Bridging_Train-Test_Gap_CVPR_2023_paper.pdf", codeUrl: "https://github.com/zhou745/GauFuse_WSTAL"}
-            { title: "Multi-Modality Self-Distillation for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "TIP 2022", venueColor: "red", tag: "Action", media: "images/TIP2022_MMSD.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/9687132/", codeUrl: "https://github.com/LeonHLJ/MMSD" }
-            { title: "Weakly Supervised Temporal Action Localization via Representative Snippet Knowledge Propagation", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "CVPR 2022", venueColor: "blue", tag: "Action", media: "images/CVPR2022.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2022/papers/Huang_Weakly_Supervised_Temporal_Action_Localization_via_Representative_Snippet_Knowledge_Propagation_CVPR_2022_paper.pdf", codeUrl: "https://github.com/LeonHLJ/RSKP"},
-            { title: "Modeling Sub-Actions for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "TIP 2021", venueColor: "yellow", tag: "Action", media: "images/TIP2021_subaction.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/9430747/"}
-            { title: "Two-branch Relational Prototypical Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "TPAMI 2021", venueColor: "purple", tag: "Action", media: "images/TPAMI2021_twobranch.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/9417653/"}
-            { title: "Foreground-Action Consistency Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "ICCV 2021", venueColor: "green", tag: "Action", media: "images/ICCV2021.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/ICCV2021/papers/Huang_Foreground-Action_Consistency_Network_for_Weakly_Supervised_Temporal_Action_Localization_ICCV_2021_paper.pdf", codeUrl: "https://github.com/LeonHLJ/FAC-Net"},
-            { title: "Relational Prototypical Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "AAAI 2020", venueColor: "orange", tag: "Action", media: "images/AAAI_WSTAL.png", mediaType: "image", paperUrl: "https://ojs.aaai.org/index.php/AAAI/article/view/6760/6614"}
+            { title: "VaccineRAG: Boosting Multimodal Large Language Models' Immunity to Harmful RAG Samples", authors: "Qixin Sun, Ziqin Wang, ..., <b>Linjiang Huang (Corresponding)</b>", venue: "AAAI 2026", venueColor: "green", tag: "MLLM", year: 2026, media: "images/AAAI2026_VaccineRAG.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2509.04502", isFirstOrCorr: true },
+            { title: "NopeRoomGS: Pose-Free Indoor 3D Gaussian Splatting via Local-to-Global Optimization", authors: "Wenbo Li, Yan Xu, ..., <b>Linjiang Huang</b>, Hongsheng Li", venue: "NeurIPS 2025", venueColor: "purple", tag: "3D Vision", year: 2025, media: "images/NeurIPS2025_NopeRoomGS.png", mediaType: "image", paperUrl: "https://openreview.net/pdf?id=SoPSI570Ap", isFirstOrCorr: false },
+            { title: "GoT: Unleashing Reasoning Capability of MLLM for Visual Generation and Editing", authors: "Rongyao Fang, ..., <b>Linjiang Huang</b>, ...", venue: "NeurIPS 2025", venueColor: "purple", tag: "MLLM", year: 2025, media: "images/NeurIPS2025_GOT.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2503.10639", codeUrl: "https://github.com/rongyaofang/GoT", isFirstOrCorr: false },
+            { title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation", authors: "Ruipu Wu, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "MM 2025", venueColor: "blue", tag: "VLN", year: 2025, media: "images/AeroDuo_MM2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2508.15232?", codeUrl: "https://rey-nard.github.io/AeroDuo_project/", isFirstOrCorr: true },
+            { title: "Hi AirStar, Guide Me to the Badminton Court.", authors: "Ziqin Wang, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "MM 2025", venueColor: "blue", tag: "VLN", year: 2025, media: "images/AirStar_MM2025.mp4", mediaType: "video", paperUrl: "https://arxiv.org/pdf/2507.04430", codeUrl: "https://buaa-colalab.github.io/airstar.github.io/", isFirstOrCorr: true },
+            { title: "PUMA: Empowering Unified MLLM with Multi-granular Visual Generation", authors: "Rongyao Fang, ..., <b>Linjiang Huang</b>, ...", venue: "ICCV 2025", venueColor: "green", tag: "MLLM", year: 2025, media: "images/PUMA_ICCV2025.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/ICCV2025/papers/Fang_PUMA_Empowering_Unified_MLLM_with_Multi-granular_Visual_Generation_ICCV_2025_paper.pdf", codeUrl: "https://github.com/rongyaofang/PUMA", isFirstOrCorr: false },
+            { title: "FreeDNA: Training-Free Domain Noise Alignment for Domain Adaptation", authors: "Hang Xu, ..., <b>Linjiang Huang</b>, ...", venue: "ICCV 2025", venueColor: "green", tag: "Diffusion", year: 2025, media: "images/FreeDNA_ICCV2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2506.22509", codeUrl: "https://github.com/xuhang07/FreeDNA", isFirstOrCorr: false },
+            { title: "SOLVE: Synergy of Language-Vision and End-to-End Networks for Autonomous Driving", authors: "Xuesong Chen*, <b>Linjiang Huang*</b>, ...", venue: "CVPR 2025", venueColor: "blue", tag: "Driving", year: 2025, media: "images/CVPR2025_SOLVE.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Chen_SOLVE_Synergy_of_Language-Vision_and_End-to-End_Networks_for_Autonomous_Driving_CVPR_2025_paper.pdf", isFirstOrCorr: true },
+            { title: "FlexDrive: Toward Trajectory Flexibility in Driving Scene Reconstruction", authors: "Jingqiu Zhou, ..., <b>Linjiang Huang</b>, ...", venue: "CVPR 2025", venueColor: "blue", tag: "3D Vision", year: 2025, media: "images/CVPR2025_FlexDrive.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Zhou_FlexDrive_Toward_Trajectory_Flexibility_in_Driving_Scene_Gaussian_Splatting_Reconstruction_CVPR_2025_paper.pdf", codeUrl: "https://github.com/zhou745/FlexDrive", isFirstOrCorr: false },
+            { title: "GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance", authors: "Jingqiu Zhou, ..., <b>Linjiang Huang (Corresponding)</b>, ...", venue: "AAAI 2025", venueColor: "orange", tag: "3D Vision", year: 2025, media: "images/AAAI_3DGS.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2506.22509", codeUrl: "https://github.com/zhou745/GaussianPainter", isFirstOrCorr: true },
+            { title: "Localization and Recognition of Human Action in 3D Using Transformers", authors: "Jiankai Sun, <b>Linjiang Huang</b>, ...", venue: "Comm. Eng.", venueColor: "teal", tag: "Action", year: 2024, media: "images/CommEng2024.png", mediaType: "image", paperUrl: "https://www.nature.com/articles/s44172-024-00272-7", codeUrl: "https://github.com/locate-bench/locate", isFirstOrCorr: false },
+            { title: "Comprehensive Attribute Prediction Learning for Person Search by Language", authors: "Kai Niu, <b>Linjiang Huang (Corresponding)</b>, ...", venue: "TIP 2024", venueColor: "yellow", tag: "Others", year: 2024, media: "images/TIP2024_CAPL.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10464200/", isFirstOrCorr: true },
+            { title: "FouriScale: A Frequency Perspective on Training-Free High-Resolution Image Synthesis", authors: "<b>Linjiang Huang</b>, Rongyao Fang, ...", venue: "ECCV 2024", venueColor: "purple", tag: "Diffusion", year: 2024, media: "images/ECCV2024.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2403.12963", codeUrl: "https://github.com/LeonHLJ/FouriScale", isFirstOrCorr: true },
+            { title: "Teach-DETR: Better Training DETR with Teachers", authors: "<b>Linjiang Huang</b>, Kaixin Lu, ...", venue: "TPAMI", venueColor: "purple", tag: "Others", year: 2023, media: "images/TPAMI2023.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10264211/", codeUrl: "https://github.com/LeonHLJ/Teach-DETR", isFirstOrCorr: true },
+            { title: "Improving Inconspicuous Attributes Modeling for Person Search by Language", authors: "Kai Niu, Tao Huang, <b>Linjiang Huang (Corresponding)</b>, ...", venue: "TIP 2023", venueColor: "yellow", tag: "Others", year: 2023, media: "images/TIP2023_ASAMN.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/10149813/", isFirstOrCorr: true },
+            { title: "Improving Weakly Supervised Temporal Action Localization by Bridging Train-Test Gap in Pseudo Labels", authors: "Jingqiu Zhou, <b>Linjiang Huang (Corresponding)</b>, ...", venue: "CVPR 2023", venueColor: "blue", tag: "Action", year: 2023, media: "images/CVPR2023_GauFuse.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2023/papers/Zhou_Improving_Weakly_Supervised_Temporal_Action_Localization_by_Bridging_Train-Test_Gap_CVPR_2023_paper.pdf", codeUrl: "https://github.com/zhou745/GauFuse_WSTAL", isFirstOrCorr: true },
+            { title: "Multi-Modality Self-Distillation for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "TIP 2022", venueColor: "red", tag: "Action", year: 2022, media: "images/TIP2022_MMSD.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/9687132/", codeUrl: "https://github.com/LeonHLJ/MMSD", isFirstOrCorr: true },
+            { title: "Weakly Supervised Temporal Action Localization via Representative Snippet Knowledge Propagation", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "CVPR 2022", venueColor: "blue", tag: "Action", year: 2022, media: "images/CVPR2022.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2022/papers/Huang_Weakly_Supervised_Temporal_Action_Localization_via_Representative_Snippet_Knowledge_Propagation_CVPR_2022_paper.pdf", codeUrl: "https://github.com/LeonHLJ/RSKP", isFirstOrCorr: true },
+            { title: "Modeling Sub-Actions for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "TIP 2021", venueColor: "yellow", tag: "Action", year: 2021, media: "images/TIP2021_subaction.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/9430747/", isFirstOrCorr: true },
+            { title: "Two-branch Relational Prototypical Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "TPAMI", venueColor: "purple", tag: "Action", year: 2021, media: "images/TPAMI2021_twobranch.png", mediaType: "image", paperUrl: "https://ieeexplore.ieee.org/document/9417653/", isFirstOrCorr: true },
+            { title: "Foreground-Action Consistency Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Liang Wang, Hongsheng Li", venue: "ICCV 2021", venueColor: "green", tag: "Action", year: 2021, media: "images/ICCV2021.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/ICCV2021/papers/Huang_Foreground-Action_Consistency_Network_for_Weakly_Supervised_Temporal_Action_Localization_ICCV_2021_paper.pdf", codeUrl: "https://github.com/LeonHLJ/FAC-Net", isFirstOrCorr: true },
+            { title: "Relational Prototypical Network for Weakly Supervised Temporal Action Localization", authors: "<b>Linjiang Huang</b>, Yan Huang, Wanli Ouyang, Liang Wang", venue: "AAAI 2020", venueColor: "orange", tag: "Action", year: 2020, media: "images/AAAI_WSTAL.png", mediaType: "image", paperUrl: "https://ojs.aaai.org/index.php/AAAI/article/view/6760/6614", isFirstOrCorr: true }
         ];
 
         const news = [
-            { date: "Nov 2025", text: "1 papers accepted to AAAI 2026!", badge: "New" },
-            { date: "Sep 2025", text: "2 papers accepted to NeurIPS 2025!"},
+            { date: "Nov 2025", text: "1 paper accepted to AAAI 2026!", badge: "New" },
+            { date: "Sep 2025", text: "2 papers accepted to NeurIPS 2025!" },
             { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025!" },
             { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025 Demo!" },
             { date: "Jun 2025", text: "2 papers accepted to ICCV 2025!" },
@@ -980,20 +1389,75 @@
             { date: "Sep 2023", text: "1 paper accepted to TPAMI!" }
         ];
 
+        const FEATURED_COUNT = 5;
         let currentModalIndex = 0;
-        let filteredPublications = publications;
+        let allPubsForModal = publications;
+        let currentYearFilter = 'all';
+        let currentTopicFilter = 'all';
+        let isCollapsed = false;
+        let filteredPubs = [];
+        let currentDetailIndex = 0;
 
         function getPlaceholder(title) {
             const hue = (title.length * 37) % 360;
             return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:hsl(${hue},70%,95%)"/><stop offset="100%" style="stop-color:hsl(${hue + 40},70%,90%)"/></linearGradient></defs><rect fill="url(#g)" width="400" height="300"/><text x="200" y="150" font-family="system-ui" font-size="11" fill="hsl(${hue},30%,60%)" text-anchor="middle">Paper Figure</text></svg>`)}`;
         }
 
-        function renderPublications(filter = 'all') {
-            filteredPublications = filter === 'all' ? publications : publications.filter(p => p.tag === filter);
-            
-            document.getElementById('publications-grid').innerHTML = filteredPublications.map((pub, i) => `
+        function getYears() {
+            const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
+            return years;
+        }
+
+        function getTopics() {
+            const topics = [...new Set(publications.map(p => p.tag))].sort();
+            return topics;
+        }
+
+        function renderFilters() {
+            const years = getYears();
+            const topics = getTopics();
+
+            document.getElementById('year-filters').innerHTML = `
+                <button class="filter-pill active" data-year="all">All</button>
+                ${years.map(y => `<button class="filter-pill" data-year="${y}">${y}</button>`).join('')}
+            `;
+
+            document.getElementById('topic-filters').innerHTML = `
+                <button class="filter-pill active" data-topic="all">All</button>
+                ${topics.map(t => `<button class="filter-pill" data-topic="${t}">${t}</button>`).join('')}
+            `;
+
+            document.querySelectorAll('#year-filters .filter-pill').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#year-filters .filter-pill').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentYearFilter = btn.dataset.year;
+                    renderAllPublications();
+                });
+            });
+
+            document.querySelectorAll('#topic-filters .filter-pill').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#topic-filters .filter-pill').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentTopicFilter = btn.dataset.topic;
+                    renderAllPublications();
+                });
+            });
+        }
+
+        function getFeaturedPubs() {
+            return publications.filter(p => p.isFirstOrCorr).slice(0, FEATURED_COUNT);
+        }
+
+        function renderRecentPublications() {
+            const featured = getFeaturedPubs();
+
+            document.getElementById('recent-publications').innerHTML = featured.map((pub, i) => {
+                const globalIndex = publications.indexOf(pub);
+                return `
                 <div class="pub-card">
-                    <div class="pub-media" onclick="openModal(${i})">
+                    <div class="pub-media" onclick="openModal(${globalIndex})">
                         ${pub.mediaType === 'video' 
                             ? `<video src="${pub.media}" muted loop preload="metadata" onerror="this.poster='${getPlaceholder(pub.title)}'"></video>`
                             : `<img src="${pub.media}" alt="${pub.title}" onerror="this.src='${getPlaceholder(pub.title)}'">`}
@@ -1007,17 +1471,145 @@
                         <h3 class="pub-title">${pub.title}</h3>
                         <p class="pub-authors">${pub.authors}</p>
                         <div class="pub-links">
-                            ${pub.paperUrl ? `<a href="${pub.paperUrl}" class="pub-link" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>` : ''}
-                            ${pub.codeUrl ? `<a href="${pub.codeUrl}" class="pub-link" target="_blank"><i class="fab fa-github"></i> Code</a>` : ''}
+                            ${pub.paperUrl ? `<a href="${pub.paperUrl}" class="pub-link" target="_blank" onclick="event.stopPropagation()"><i class="fas fa-file-pdf"></i> Paper</a>` : ''}
+                            ${pub.codeUrl ? `<a href="${pub.codeUrl}" class="pub-link" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-github"></i> Code</a>` : ''}
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
 
-            document.querySelectorAll('.pub-media video').forEach(v => {
+            document.querySelectorAll('#recent-publications .pub-media video').forEach(v => {
                 v.parentElement.addEventListener('mouseenter', () => v.play());
                 v.parentElement.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
             });
+        }
+
+        function getVenueTextColor(venueColor) {
+            const colors = {
+                purple: '#7c3aed',
+                blue: '#2563eb',
+                green: '#16a34a',
+                orange: '#ea580c',
+                teal: '#0d9488',
+                yellow: '#ca8a04',
+                red: '#dc2626'
+            };
+            return colors[venueColor] || '#6366f1';
+        }
+
+        function renderAllPublications() {
+            let allPubs = [...publications];
+            
+            if (currentYearFilter !== 'all') {
+                allPubs = allPubs.filter(p => p.year === parseInt(currentYearFilter));
+            }
+            
+            if (currentTopicFilter !== 'all') {
+                allPubs = allPubs.filter(p => p.tag === currentTopicFilter);
+            }
+
+            filteredPubs = allPubs;
+
+            const grid = document.getElementById('all-publications');
+
+            if (filteredPubs.length === 0) {
+                grid.innerHTML = `<div class="no-results">No publications found for this filter combination.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filteredPubs.map((pub, i) => {
+                return `
+                <div class="pub-card-thumb" onclick="openPubDetail(${i})" data-index="${i}">
+                    <div class="pub-card-thumb-bg">
+                        ${pub.mediaType === 'video' 
+                            ? `<video src="${pub.media}" muted loop preload="metadata" onerror="this.poster='${getPlaceholder(pub.title)}'"></video>`
+                            : `<img src="${pub.media}" alt="${pub.title}" onerror="this.src='${getPlaceholder(pub.title)}'">`}
+                    </div>
+                    <div class="pub-card-thumb-overlay"></div>
+                    <div class="pub-card-thumb-content">
+                        <span class="pub-card-thumb-badge" style="color: ${getVenueTextColor(pub.venueColor)}">${pub.venue}</span>
+                        ${pub.mediaType === 'video' ? `<div class="pub-card-thumb-icon"><i class="fas fa-play"></i></div>` : ''}
+                        <h3 class="pub-card-thumb-title">${pub.title}</h3>
+                    </div>
+                </div>
+            `}).join('');
+
+            document.querySelectorAll('.pub-card-thumb-bg video').forEach(v => {
+                const card = v.closest('.pub-card-thumb');
+                card.addEventListener('mouseenter', () => v.play());
+                card.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+            });
+
+            if (isCollapsed) {
+                grid.classList.add('collapsed');
+            }
+        }
+
+        function toggleAllPubs() {
+            const grid = document.getElementById('all-publications');
+            const toggle = document.getElementById('collapse-toggle');
+            const toggleText = document.getElementById('toggle-text');
+            
+            isCollapsed = !isCollapsed;
+            
+            if (isCollapsed) {
+                grid.classList.add('collapsed');
+                toggle.classList.add('collapsed');
+                toggleText.textContent = 'Expand';
+            } else {
+                grid.classList.remove('collapsed');
+                toggle.classList.remove('collapsed');
+                toggleText.textContent = 'Collapse';
+            }
+        }
+
+        function openPubDetail(index) {
+            currentDetailIndex = index;
+            renderPubDetail();
+            document.getElementById('pub-detail-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderPubDetail() {
+            const pub = filteredPubs[currentDetailIndex];
+            const content = document.getElementById('pub-detail-content');
+            
+            content.innerHTML = `
+                <button class="pub-detail-close" onclick="closePubDetail()"><i class="fas fa-times"></i></button>
+                ${filteredPubs.length > 1 ? `
+                    <button class="pub-detail-nav prev" onclick="navigatePubDetail(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="pub-detail-nav next" onclick="navigatePubDetail(1)"><i class="fas fa-chevron-right"></i></button>
+                ` : ''}
+                <div class="pub-detail-media" onclick="openModal(${publications.indexOf(pub)})">
+                    ${pub.mediaType === 'video' 
+                        ? `<video src="${pub.media}" controls onerror="this.poster='${getPlaceholder(pub.title)}'"></video>`
+                        : `<img src="${pub.media}" alt="${pub.title}" onerror="this.src='${getPlaceholder(pub.title)}'">`}
+                </div>
+                <div class="pub-detail-body">
+                    <div class="pub-detail-badges">
+                        <span class="pub-venue venue-${pub.venueColor}">${pub.venue}</span>
+                        <span class="pub-tag">${pub.tag}</span>
+                    </div>
+                    <h2 class="pub-detail-title">${pub.title}</h2>
+                    <p class="pub-detail-authors">${pub.authors}</p>
+                    <div class="pub-detail-links">
+                        ${pub.paperUrl ? `<a href="${pub.paperUrl}" class="pub-detail-link" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>` : ''}
+                        ${pub.codeUrl ? `<a href="${pub.codeUrl}" class="pub-detail-link" target="_blank"><i class="fab fa-github"></i> Code</a>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function navigatePubDetail(direction) {
+            currentDetailIndex = (currentDetailIndex + direction + filteredPubs.length) % filteredPubs.length;
+            renderPubDetail();
+        }
+
+        function closePubDetail() {
+            document.getElementById('pub-detail-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            const v = document.querySelector('.pub-detail-media video');
+            if (v) v.pause();
         }
 
         function renderNews() {
@@ -1029,23 +1621,17 @@
             `).join('');
         }
 
-        document.querySelectorAll('.filter-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderPublications(btn.dataset.filter);
-            });
-        });
-
-        function openModal(i) {
-            currentModalIndex = i;
+        function openModal(index) {
+            currentModalIndex = index;
+            allPubsForModal = publications;
             updateModal();
             document.getElementById('media-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            closePubDetail();
         }
 
         function updateModal() {
-            const pub = filteredPublications[currentModalIndex];
+            const pub = allPubsForModal[currentModalIndex];
             document.getElementById('modal-media-container').innerHTML = pub.mediaType === 'video'
                 ? `<video src="${pub.media}" controls autoplay></video>`
                 : `<img src="${pub.media}" onerror="this.src='${getPlaceholder(pub.title)}'">`;
@@ -1053,7 +1639,7 @@
         }
 
         function navigateModal(d) {
-            currentModalIndex = (currentModalIndex + d + filteredPublications.length) % filteredPublications.length;
+            currentModalIndex = (currentModalIndex + d + allPubsForModal.length) % allPubsForModal.length;
             updateModal();
         }
 
@@ -1065,11 +1651,18 @@
         }
 
         document.getElementById('media-modal').addEventListener('click', e => { if (e.target.id === 'media-modal') closeModal(); });
+        document.getElementById('pub-detail-modal').addEventListener('click', e => { if (e.target.id === 'pub-detail-modal') closePubDetail(); });
+        
         document.addEventListener('keydown', e => {
-            if (!document.getElementById('media-modal').classList.contains('active')) return;
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') navigateModal(-1);
-            if (e.key === 'ArrowRight') navigateModal(1);
+            if (document.getElementById('media-modal').classList.contains('active')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') navigateModal(-1);
+                if (e.key === 'ArrowRight') navigateModal(1);
+            } else if (document.getElementById('pub-detail-modal').classList.contains('active')) {
+                if (e.key === 'Escape') closePubDetail();
+                if (e.key === 'ArrowLeft') navigatePubDetail(-1);
+                if (e.key === 'ArrowRight') navigatePubDetail(1);
+            }
         });
 
         function toggleMobileMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
@@ -1082,7 +1675,9 @@
             });
         });
 
-        renderPublications();
+        renderFilters();
+        renderRecentPublications();
+        renderAllPublications();
         renderNews();
     </script>
 </body>
