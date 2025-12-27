@@ -1409,8 +1409,13 @@
         }
 
         function getTopics() {
-            const topics = [...new Set(publications.map(p => p.tag))].sort();
-            return topics;
+            const topics = [...new Set(publications.map(p => p.tag))];
+            // Sort alphabetically but put "Others" at the end
+            return topics.sort((a, b) => {
+                if (a === 'Others') return 1;
+                if (b === 'Others') return -1;
+                return a.localeCompare(b);
+            });
         }
 
         function renderFilters() {
