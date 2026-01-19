@@ -16,18 +16,23 @@
         }
 
         :root {
-            --bg: #fafafa;
-            --card: #ffffff;
-            --text: #1a1a2e;
-            --text-secondary: #64648c;
-            --accent-1: #6366f1;
-            --accent-2: #8b5cf6;
-            --accent-3: #06b6d4;
-            --accent-4: #10b981;
-            --accent-5: #f59e0b;
-            --border: #e5e5f0;
-            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-            --gradient-2: linear-gradient(135deg, #f0f0ff 0%, #faf5ff 50%, #ecfeff 100%);
+            --bg: #0a0a0f;
+            --bg-secondary: #12121a;
+            --card: #16161f;
+            --card-hover: #1c1c28;
+            --text: #f0f0f5;
+            --text-secondary: #8888a0;
+            --text-muted: #5a5a70;
+            --accent-1: #818cf8;
+            --accent-2: #a78bfa;
+            --accent-3: #22d3ee;
+            --accent-4: #34d399;
+            --accent-5: #fbbf24;
+            --border: #252535;
+            --border-light: #2a2a3d;
+            --gradient-1: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #22d3ee 100%);
+            --gradient-2: linear-gradient(135deg, rgba(129, 140, 248, 0.15) 0%, rgba(167, 139, 250, 0.1) 50%, rgba(34, 211, 238, 0.08) 100%);
+            --gradient-glow: linear-gradient(135deg, rgba(129, 140, 248, 0.4) 0%, rgba(167, 139, 250, 0.3) 100%);
         }
 
         body {
@@ -46,9 +51,19 @@
             inset: 0;
             z-index: -1;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.02) 0%, transparent 40%);
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(129, 140, 248, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 50%, rgba(34, 211, 238, 0.04) 0%, transparent 40%);
+        }
+
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
 
         nav {
@@ -66,11 +81,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(22, 22, 31, 0.85);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 100px;
             padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         nav .logo {
@@ -141,6 +157,7 @@
             position: sticky;
             top: 100px;
             text-align: center;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
         }
 
         .avatar-container {
@@ -156,6 +173,7 @@
             border-radius: 50%;
             background: var(--gradient-1);
             animation: rotate 8s linear infinite;
+            opacity: 0.8;
         }
 
         @keyframes rotate {
@@ -186,6 +204,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
+            color: var(--text);
         }
 
         .profile-title {
@@ -200,6 +219,7 @@
             gap: 0.375rem;
             padding: 0.375rem 0.75rem;
             background: var(--gradient-2);
+            border: 1px solid rgba(129, 140, 248, 0.2);
             border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 500;
@@ -214,6 +234,7 @@
             background: var(--accent-4);
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 8px var(--accent-4);
         }
 
         @keyframes pulse {
@@ -233,7 +254,8 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.75rem 1rem;
-            background: var(--bg);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 12px;
             text-decoration: none;
             color: var(--text);
@@ -243,6 +265,7 @@
 
         .contact-link:hover {
             background: var(--gradient-2);
+            border-color: rgba(129, 140, 248, 0.3);
             transform: translateX(4px);
         }
 
@@ -264,7 +287,8 @@
             align-items: center;
             justify-content: center;
             border-radius: 12px;
-            background: var(--bg);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.2s ease;
@@ -272,8 +296,10 @@
 
         .social-icon:hover {
             background: var(--gradient-1);
+            border-color: transparent;
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(129, 140, 248, 0.3);
         }
 
         .about-content {
@@ -286,6 +312,7 @@
             gap: 0.5rem;
             padding: 0.5rem 1rem;
             background: var(--gradient-2);
+            border: 1px solid rgba(129, 140, 248, 0.2);
             border-radius: 100px;
             font-size: 0.875rem;
             color: var(--accent-1);
@@ -308,6 +335,7 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
+            color: var(--text);
         }
 
         .about-content h1 .highlight {
@@ -328,9 +356,11 @@
             color: var(--accent-1);
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.2s;
         }
 
         .about-text a:hover {
+            color: var(--accent-2);
             text-decoration: underline;
         }
 
@@ -342,7 +372,7 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             margin-bottom: 1rem;
         }
 
@@ -368,6 +398,7 @@
             border-color: var(--accent-1);
             color: var(--accent-1);
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.2);
         }
 
         section {
@@ -389,12 +420,13 @@
         .section-header h2 {
             font-size: 2rem;
             font-weight: 700;
+            color: var(--text);
         }
 
         .section-header .line {
             flex: 1;
             height: 1px;
-            background: var(--border);
+            background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
         }
 
         .publications-grid {
@@ -414,8 +446,8 @@
         }
 
         .pub-card:hover {
-            border-color: transparent;
-            box-shadow: 0 0 0 1px var(--accent-1), 0 20px 40px -20px rgba(99, 102, 241, 0.2);
+            border-color: rgba(129, 140, 248, 0.4);
+            box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.2), 0 20px 40px -20px rgba(129, 140, 248, 0.3);
             transform: translateY(-2px);
         }
 
@@ -423,7 +455,7 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            background: linear-gradient(135deg, #f0f0ff, #faf5ff);
+            background: linear-gradient(135deg, #1a1a2e, #252540);
         }
 
         .pub-media img,
@@ -442,7 +474,7 @@
         .pub-media-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+            background: linear-gradient(135deg, rgba(129, 140, 248, 0.8), rgba(167, 139, 250, 0.8));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -482,19 +514,20 @@
             letter-spacing: 0.02em;
         }
 
-        .venue-purple { background: linear-gradient(135deg, #ede9fe, #f3e8ff); color: #7c3aed; }
-        .venue-blue { background: linear-gradient(135deg, #dbeafe, #e0f2fe); color: #2563eb; }
-        .venue-green { background: linear-gradient(135deg, #dcfce7, #d1fae5); color: #16a34a; }
-        .venue-orange { background: linear-gradient(135deg, #ffedd5, #fef3c7); color: #ea580c; }
-        .venue-teal { background: linear-gradient(135deg, #ccfbf1, #cffafe); color: #0d9488; }
-        .venue-yellow { background: linear-gradient(135deg, #fef9c3, #fef3c7); color: #ca8a04; }
-        .venue-red { background: linear-gradient(135deg, #fee2e2, #fecaca); color: #dc2626; }
+        .venue-purple { background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+        .venue-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .venue-green { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .venue-orange { background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+        .venue-teal { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
+        .venue-yellow { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .venue-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
 
         .pub-tag {
             font-size: 0.65rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             padding: 0.2rem 0.5rem;
-            background: var(--bg);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 4px;
         }
 
@@ -539,7 +572,7 @@
             align-items: center;
             gap: 0.375rem;
             padding: 0.375rem 0.75rem;
-            background: var(--bg);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             color: var(--text);
             border-radius: 8px;
@@ -580,6 +613,7 @@
         .all-pubs-title h3 {
             font-size: 1.25rem;
             font-weight: 700;
+            color: var(--text);
         }
 
         .collapse-toggle {
@@ -625,7 +659,7 @@
 
         .filter-label {
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-weight: 500;
         }
 
@@ -658,7 +692,7 @@
             color: white;
         }
 
-        /* Thumbnail Card Style - 120px */
+        /* Thumbnail Card Style */
         .pub-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -680,12 +714,14 @@
             aspect-ratio: 1;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
         }
 
         .pub-card-thumb:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 8px 25px rgba(129, 140, 248, 0.25);
+            border-color: rgba(129, 140, 248, 0.4);
         }
 
         .pub-card-thumb-bg {
@@ -712,9 +748,9 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0) 0%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(0, 0, 0, 0.85) 100%
+                rgba(10, 10, 15, 0) 0%,
+                rgba(10, 10, 15, 0.5) 50%,
+                rgba(10, 10, 15, 0.9) 100%
             );
             z-index: 1;
             transition: all 0.3s ease;
@@ -723,9 +759,9 @@
         .pub-card-thumb:hover .pub-card-thumb-overlay {
             background: linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0) 0%,
-                rgba(0, 0, 0, 0.3) 50%,
-                rgba(0, 0, 0, 0.75) 100%
+                rgba(10, 10, 15, 0) 0%,
+                rgba(10, 10, 15, 0.4) 50%,
+                rgba(10, 10, 15, 0.85) 100%
             );
         }
 
@@ -748,7 +784,8 @@
             padding: 0.125rem 0.375rem;
             border-radius: 3px;
             text-transform: uppercase;
-            background: rgba(255,255,255,0.95);
+            background: rgba(22, 22, 31, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
             white-space: nowrap;
         }
 
@@ -759,7 +796,8 @@
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(22, 22, 31, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -777,7 +815,7 @@
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         .no-results {
@@ -793,8 +831,8 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
             z-index: 1500;
             align-items: center;
             justify-content: center;
@@ -807,6 +845,7 @@
 
         .pub-detail-content {
             background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 24px;
             max-width: 800px;
             width: 100%;
@@ -814,6 +853,7 @@
             overflow: auto;
             position: relative;
             animation: modalSlideIn 0.3s ease;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes modalSlideIn {
@@ -831,7 +871,7 @@
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(22, 22, 31, 0.9);
             border: 1px solid var(--border);
             width: 40px;
             height: 40px;
@@ -853,7 +893,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255,255,255,0.9);
+            background: rgba(22, 22, 31, 0.9);
             border: 1px solid var(--border);
             width: 36px;
             height: 36px;
@@ -882,7 +922,7 @@
             aspect-ratio: 16/9;
             overflow: hidden;
             border-radius: 24px 24px 0 0;
-            background: linear-gradient(135deg, #f0f0ff, #faf5ff);
+            background: linear-gradient(135deg, #1a1a2e, #252540);
             cursor: pointer;
         }
 
@@ -939,7 +979,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.25rem;
-            background: var(--bg);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             color: var(--text);
             border-radius: 12px;
@@ -955,84 +995,191 @@
             color: white;
         }
 
+        /* News Section - New Grid Layout */
         #news {
+            background: var(--bg-secondary);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .news-grid.collapsed .news-card:nth-child(n+7) {
+            display: none;
+        }
+
+        .news-card {
             background: var(--card);
-        }
-
-        .news-timeline {
-            max-width: 700px;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .news-timeline::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--gradient-1);
-            border-radius: 1px;
-        }
-
-        .news-item {
-            position: relative;
-            padding: 1rem 0;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: flex-start;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .news-item::before {
+        .news-card::before {
             content: '';
             position: absolute;
-            left: -2rem;
-            top: 1.25rem;
-            width: 16px;
-            height: 16px;
-            background: var(--card);
-            border: 3px solid var(--accent-1);
-            border-radius: 50%;
-            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .news-item:first-child::before {
+        .news-card:hover {
+            border-color: rgba(129, 140, 248, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-card:hover::before {
+            opacity: 1;
+        }
+
+        .news-card.featured {
+            background: var(--gradient-2);
+            border-color: rgba(129, 140, 248, 0.3);
+        }
+
+        .news-card.featured::before {
+            opacity: 1;
+        }
+
+        .news-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .news-card.featured .news-icon {
             background: var(--gradient-1);
             border: none;
-            animation: pulse 2s ease-in-out infinite;
+            color: white;
+            animation: pulse-icon 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(129, 140, 248, 0); }
+        }
+
+        .news-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.375rem;
         }
 
         .news-date {
-            flex-shrink: 0;
-            width: 80px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--accent-1);
         }
 
-        .news-text {
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-
         .news-badge {
-            display: inline-block;
-            padding: 0.15rem 0.4rem;
+            padding: 0.125rem 0.5rem;
             background: var(--gradient-1);
             color: white;
             font-size: 0.625rem;
-            font-weight: 600;
-            border-radius: 4px;
-            margin-left: 0.5rem;
+            font-weight: 700;
+            border-radius: 100px;
             text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .news-text {
+            color: var(--text);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .news-show-more {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .news-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .news-toggle-btn:hover {
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+        }
+
+        .news-toggle-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .news-toggle-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+        /* Year Divider for News */
+        .news-year-divider {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .news-year-divider span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            background: var(--bg);
+            border-radius: 100px;
+        }
+
+        .news-year-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
         }
 
         .media-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(10, 10, 15, 0.98);
             z-index: 2000;
             align-items: center;
             justify-content: center;
@@ -1060,7 +1207,7 @@
         }
 
         .modal-title {
-            color: rgba(255,255,255,0.7);
+            color: var(--text-secondary);
             font-size: 0.875rem;
             margin-top: 1rem;
             text-align: center;
@@ -1072,18 +1219,19 @@
             top: 24px;
             right: 32px;
             background: rgba(255, 255, 255, 0.1);
-            border: none;
+            border: 1px solid rgba(255,255,255,0.1);
             width: 48px;
             height: 48px;
             border-radius: 50%;
             color: white;
             font-size: 1.25rem;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
         .modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--gradient-1);
+            border-color: transparent;
         }
 
         .modal-nav {
@@ -1091,17 +1239,20 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.1);
-            border: none;
+            border: 1px solid rgba(255,255,255,0.1);
             width: 48px;
             height: 48px;
             border-radius: 50%;
             color: white;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
-        .modal-nav:hover { background: rgba(255, 255, 255, 0.2); }
+        .modal-nav:hover { 
+            background: var(--gradient-1);
+            border-color: transparent;
+        }
         .modal-nav.prev { left: 24px; }
         .modal-nav.next { right: 24px; }
 
@@ -1109,11 +1260,31 @@
             padding: 3rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border);
+            background: var(--bg);
         }
 
         footer p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.8rem;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
         }
 
         @media (max-width: 900px) {
@@ -1138,6 +1309,10 @@
 
             .pub-card-grid {
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1328,7 +1503,7 @@
                 <h2>News</h2>
                 <div class="line"></div>
             </div>
-            <div class="news-timeline" id="news-list"></div>
+            <div class="news-grid collapsed" id="news-list"></div>
         </div>
     </section>
 
@@ -1377,30 +1552,32 @@
         ];
 
         const news = [
-            { date: "Nov 2025", text: "1 paper accepted to AAAI 2026!", badge: "New" },
-            { date: "Sep 2025", text: "2 papers accepted to NeurIPS 2025!" },
-            { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025!" },
-            { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025 Demo!" },
-            { date: "Jun 2025", text: "2 papers accepted to ICCV 2025!" },
-            { date: "Feb 2025", text: "2 papers accepted to CVPR 2025!" },
-            { date: "Dec 2024", text: "1 paper accepted to AAAI 2025!" },
-            { date: "Sep 2024", text: "1 paper accepted to Nature Communications Engineering!" },
-            { date: "Jul 2024", text: "1 paper accepted to ECCV 2024!" },
-            { date: "Sep 2023", text: "1 paper accepted to TPAMI!" }
+            { date: "Nov 2025", text: "1 paper accepted to AAAI 2026!", badge: "New", icon: "fa-trophy" },
+            { date: "Sep 2025", text: "2 papers accepted to NeurIPS 2025!", icon: "fa-star" },
+            { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025!", icon: "fa-file-alt" },
+            { date: "Jul 2025", text: "1 paper accepted to ACM MM 2025 Demo!", icon: "fa-desktop" },
+            { date: "Jun 2025", text: "2 papers accepted to ICCV 2025!", icon: "fa-star" },
+            { date: "Feb 2025", text: "2 papers accepted to CVPR 2025!", icon: "fa-star" },
+            { date: "Dec 2024", text: "1 paper accepted to AAAI 2025!", icon: "fa-trophy" },
+            { date: "Sep 2024", text: "1 paper accepted to Nature Communications Engineering!", icon: "fa-award" },
+            { date: "Jul 2024", text: "1 paper accepted to ECCV 2024!", icon: "fa-file-alt" },
+            { date: "Sep 2023", text: "1 paper accepted to TPAMI!", icon: "fa-book" }
         ];
 
         const FEATURED_COUNT = 5;
+        const NEWS_INITIAL_COUNT = 6;
         let currentModalIndex = 0;
         let allPubsForModal = publications;
         let currentYearFilter = 'all';
         let currentTopicFilter = 'all';
         let isCollapsed = false;
+        let isNewsCollapsed = true;
         let filteredPubs = [];
         let currentDetailIndex = 0;
 
         function getPlaceholder(title) {
             const hue = (title.length * 37) % 360;
-            return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:hsl(${hue},70%,95%)"/><stop offset="100%" style="stop-color:hsl(${hue + 40},70%,90%)"/></linearGradient></defs><rect fill="url(#g)" width="400" height="300"/><text x="200" y="150" font-family="system-ui" font-size="11" fill="hsl(${hue},30%,60%)" text-anchor="middle">Paper Figure</text></svg>`)}`;
+            return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:hsl(${hue},40%,18%)"/><stop offset="100%" style="stop-color:hsl(${hue + 40},40%,25%)"/></linearGradient></defs><rect fill="url(#g)" width="400" height="300"/><text x="200" y="150" font-family="system-ui" font-size="11" fill="hsl(${hue},30%,50%)" text-anchor="middle">Paper Figure</text></svg>`)}`;
         }
 
         function getYears() {
@@ -1410,7 +1587,6 @@
 
         function getTopics() {
             const topics = [...new Set(publications.map(p => p.tag))];
-            // Sort alphabetically but put "Others" at the end
             return topics.sort((a, b) => {
                 if (a === 'Others') return 1;
                 if (b === 'Others') return -1;
@@ -1491,15 +1667,15 @@
 
         function getVenueTextColor(venueColor) {
             const colors = {
-                purple: '#7c3aed',
-                blue: '#2563eb',
-                green: '#16a34a',
-                orange: '#ea580c',
-                teal: '#0d9488',
-                yellow: '#ca8a04',
-                red: '#dc2626'
+                purple: '#a78bfa',
+                blue: '#60a5fa',
+                green: '#4ade80',
+                orange: '#fb923c',
+                teal: '#2dd4bf',
+                yellow: '#facc15',
+                red: '#f87171'
             };
-            return colors[venueColor] || '#6366f1';
+            return colors[venueColor] || '#818cf8';
         }
 
         function renderAllPublications() {
@@ -1618,12 +1794,54 @@
         }
 
         function renderNews() {
-            document.getElementById('news-list').innerHTML = news.map(n => `
-                <div class="news-item">
-                    <span class="news-date">${n.date}</span>
-                    <span class="news-text">${n.text}${n.badge ? `<span class="news-badge">${n.badge}</span>` : ''}</span>
+            const newsGrid = document.getElementById('news-list');
+            
+            let html = news.map((n, index) => `
+                <div class="news-card ${index === 0 ? 'featured' : ''}">
+                    <div class="news-icon">
+                        <i class="fas ${n.icon || 'fa-bullhorn'}"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">${n.date}</span>
+                            ${n.badge ? `<span class="news-badge">${n.badge}</span>` : ''}
+                        </div>
+                        <p class="news-text">${n.text}</p>
+                    </div>
                 </div>
             `).join('');
+
+            // Add show more button if there are more than NEWS_INITIAL_COUNT items
+            if (news.length > NEWS_INITIAL_COUNT) {
+                html += `
+                    <div class="news-show-more">
+                        <button class="news-toggle-btn" onclick="toggleNews()">
+                            <span id="news-toggle-text">Show More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                `;
+            }
+
+            newsGrid.innerHTML = html;
+        }
+
+        function toggleNews() {
+            const newsGrid = document.getElementById('news-list');
+            const btn = document.querySelector('.news-toggle-btn');
+            const toggleText = document.getElementById('news-toggle-text');
+            
+            isNewsCollapsed = !isNewsCollapsed;
+            
+            if (isNewsCollapsed) {
+                newsGrid.classList.add('collapsed');
+                btn.classList.remove('expanded');
+                toggleText.textContent = 'Show More';
+            } else {
+                newsGrid.classList.remove('collapsed');
+                btn.classList.add('expanded');
+                toggleText.textContent = 'Show Less';
+            }
         }
 
         function openModal(index) {
