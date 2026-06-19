@@ -5220,12 +5220,25 @@
             line-height: 1;
         }
 
-        .paper-link .link-icon {
+        .link-icon {
             width: 15px;
             height: 15px;
             flex: 0 0 15px;
             display: block;
             color: currentColor;
+        }
+
+        .side-link-grid .link-icon {
+            width: 17px;
+            height: 17px;
+            flex-basis: 17px;
+        }
+
+        .paper-link span {
+            display: inline-flex;
+            align-items: center;
+            line-height: 1;
+            text-decoration: none;
         }
 
         .paper-link i {
@@ -5236,7 +5249,63 @@
             text-align: center;
         }
 
+        .media-box video[poster] {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+                color-mix(in srgb, var(--screen-soft) 78%, #000 22%);
+        }
+
+        @media (max-width: 1180px) {
+            .page-shell {
+                width: min(100% - 6px, 1180px);
+            }
+
+            .ide-grid {
+                grid-template-columns: 206px minmax(0, 1fr);
+            }
+
+            .sidebar {
+                padding: 12px 10px;
+            }
+
+            .hero-code {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-preview {
+                order: -1;
+            }
+
+            .portrait-panel {
+                grid-template-columns: minmax(140px, 190px) minmax(0, 1fr);
+                align-items: center;
+            }
+
+            .portrait-panel img {
+                height: 150px;
+            }
+
+            .focus-tags,
+            .hero-preview .paper-links {
+                margin-top: 0;
+            }
+        }
+
         @media (max-width: 880px) {
+            .ide-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                grid-column: 1;
+                width: 100%;
+                max-width: 100%;
+            }
+
             .hero-code {
                 grid-template-columns: 1fr;
                 padding: 12px;
@@ -5256,6 +5325,180 @@
                 height: 96px;
                 aspect-ratio: 1 / 1;
                 padding: 2px;
+            }
+
+            .recent-card .paper-links,
+            .detail-actions,
+            .paper-links {
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            html,
+            body,
+            .page-shell,
+            .monitor,
+            .monitor-bezel,
+            .screen,
+            .ide-grid,
+            .content,
+            .workspace-section,
+            .module-card,
+            .terminal-window,
+            .tool-panel {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+
+            .page-shell {
+                width: 100%;
+                height: 100dvh;
+                padding: 0;
+            }
+
+            .ide-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .monitor,
+            .monitor-bezel,
+            .screen {
+                border-radius: 0;
+            }
+
+            .monitor-bezel {
+                padding: 0;
+                border: 0;
+            }
+
+            .screen {
+                border-width: 0;
+                scrollbar-gutter: auto;
+            }
+
+            .window-bar {
+                grid-template-columns: auto minmax(0, 1fr);
+                min-height: 34px;
+                padding: 0 8px;
+            }
+
+            .path-pill {
+                justify-self: end;
+                max-width: 68vw;
+                font-size: 0.62rem;
+            }
+
+            .status-cluster {
+                display: none;
+            }
+
+            .content {
+                padding: 8px;
+            }
+
+            .editor-tabs {
+                margin: -8px -8px 8px;
+                min-height: 36px;
+                padding-inline: 6px;
+            }
+
+            .editor-tab {
+                height: 30px;
+                padding: 0 9px;
+                font-size: 0.68rem;
+            }
+
+            .hero-code {
+                padding: 10px;
+                gap: 10px;
+                min-width: 0;
+            }
+
+            .hero-code .code-block {
+                font-size: 0.69rem;
+                line-height: 1.42;
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                overflow-x: auto;
+            }
+
+            .hero-code .code-line {
+                grid-template-columns: 24px minmax(0, 1fr);
+                gap: 8px;
+                min-width: 0;
+                white-space: normal;
+                align-items: start;
+            }
+
+            .hero-code .code-line > span {
+                min-width: 0;
+                overflow-wrap: anywhere;
+                word-break: normal;
+            }
+
+            .portrait-panel {
+                grid-template-columns: 82px minmax(0, 1fr);
+                gap: 9px;
+                padding: 9px;
+            }
+
+            .portrait-panel img {
+                width: 82px;
+                height: 82px;
+            }
+
+            .focus-tags {
+                gap: 5px;
+            }
+
+            .focus-tags .tag-chip,
+            .hero-preview .paper-link,
+            .paper-link,
+            .terminal-button {
+                min-height: 28px;
+                padding: 0 8px;
+                font-size: 0.66rem;
+            }
+
+            .recent-deck-shell {
+                min-height: 650px;
+            }
+
+            .recent-deck {
+                min-height: 590px;
+            }
+
+            .recent-card .paper-title {
+                font-size: 1rem;
+            }
+
+            .recent-card .paper-authors {
+                font-size: 0.72rem;
+                line-height: 1.46;
+            }
+
+            .recent-venue-strip {
+                width: 100%;
+            }
+
+            .recent-venue-strip .badge {
+                max-width: 100%;
+            }
+
+            .tool-row {
+                gap: 8px;
+            }
+
+            .detail-window {
+                max-height: calc(100dvh - 20px);
             }
         }
 
@@ -5339,9 +5582,9 @@
                                     <div class="state-line"><span class="state-label">hover</span><span class="state-value" id="state-hover">ready</span></div>
                                 </div>
                                 <div class="side-link-grid">
-                                    <a href="mailto:ljhuang@buaa.edu.cn" title="Email"><i class="fas fa-envelope"></i></a>
-                                    <a href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                                    <a href="https://github.com/LeonHLJ" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="mailto:ljhuang@buaa.edu.cn" title="Email" aria-label="Email"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                                    <a href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 8.5 12 13l9-4.5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6.5 10.5v4.2c0 1.7 2.5 3.3 5.5 3.3s5.5-1.6 5.5-3.3v-4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M21 8.5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></a>
+                                    <a href="https://github.com/LeonHLJ" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8a8.3 8.3 0 0 0-2.6 16.2c.4.1.6-.2.6-.4v-1.6c-2.4.5-2.9-1-2.9-1-.4-.9-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-1.9-.2-3.9-.9-3.9-4.1 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.6-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.3 0 3.2-2 3.9-3.9 4.1.3.3.6.8.6 1.6v2.2c0 .2.2.5.6.4A8.3 8.3 0 0 0 12 3.8Z" fill="currentColor"/></svg></a>
                                 </div>
                             </div>
                         </aside>
@@ -5386,9 +5629,9 @@
                                                     <span class="tag-chip"><i class="fas fa-wand-magic-sparkles"></i> Diffusion</span>
                                                 </div>
                                                 <div class="paper-links">
-                                                    <a class="paper-link" href="mailto:ljhuang@buaa.edu.cn"><i class="fas fa-envelope"></i> Email</a>
-                                                    <a class="paper-link" href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a>
-                                                    <a class="paper-link" href="https://github.com/LeonHLJ" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                                                    <a class="paper-link" href="mailto:ljhuang@buaa.edu.cn"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Email</span></a>
+                                                    <a class="paper-link" href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" target="_blank" rel="noopener"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 8.5 12 13l9-4.5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6.5 10.5v4.2c0 1.7 2.5 3.3 5.5 3.3s5.5-1.6 5.5-3.3v-4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M21 8.5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Scholar</span></a>
+                                                    <a class="paper-link" href="https://github.com/LeonHLJ" target="_blank" rel="noopener"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8a8.3 8.3 0 0 0-2.6 16.2c.4.1.6-.2.6-.4v-1.6c-2.4.5-2.9-1-2.9-1-.4-.9-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-1.9-.2-3.9-.9-3.9-4.1 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.6-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.3 0 3.2-2 3.9-3.9 4.1.3.3.6.8.6 1.6v2.2c0 .2.2.5.6.4A8.3 8.3 0 0 0 12 3.8Z" fill="currentColor"/></svg><span>GitHub</span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -5483,7 +5726,7 @@
         { title: "Beyond 2D Matching: A Unified Single-Stage Framework for Geometry-Aware Cross-View Object Geo-Localization", authors: "Liyao Wang*, Ruipu Wu*, Haojun Xu*, Lei Shi, <b>Linjiang Huang†</b>, Si Liu", venue: "ECCV 2026", venueColor: "purple", tag: "Localization", year: 2026, media: "images/GAGeo_ECCV2026.jpg", mediaType: "image", isFirstOrCorr: true, featured: true },
         { title: "SpecV: Specification Verification for Robust Unified Multimodal Evaluation", authors: "Weihao Yu, Rongyao Fang, Yuxuan Cai, <b>Linjiang Huang</b>, Yuhuan Yang, Xianwei Zhuang, Junyang Lin, Yixuan Yuan, Shuai Bai", venue: "ECCV 2026", venueColor: "purple", tag: "MLLM", year: 2026, media: "images/SpecV_ECCV2026.jpg", mediaType: "image", isFirstOrCorr: false, featured: false },
         { title: "Drift-AR: Single-Step Visual Autoregressive Generation via Anti-Symmetric Drifting", authors: "Zhen Zou, Xiaoxiao Ma, Mingde Yao, Jie Huang, <b>Linjiang Huang</b>, Feng Zhao", venue: "ECCV 2026", venueColor: "purple", tag: "Generation", year: 2026, media: "images/DriftAR_ECCV2026.jpg", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2603.28049", isFirstOrCorr: false, featured: false },
-        { title: "CR-Solver: GPU-Accelerated Kinematics Solver for Tendon-driven Continuum Robots", authors: "Heqing Yang*, Yang Yi*, Lineing Zhong, <b>Linjiang Huang†</b>, Si Liu", venue: "IROS 2026", venueColor: "teal", tag: "Robotics", year: 2026, media: "videos/IROS2026.mp4", mediaType: "video", isFirstOrCorr: true, featured: true },
+        { title: "CR-Solver: GPU-Accelerated Kinematics Solver for Tendon-driven Continuum Robots", authors: "Heqing Yang*, Yang Yi*, Lineing Zhong, <b>Linjiang Huang†</b>, Si Liu", venue: "IROS 2026", venueColor: "teal", tag: "Robotics", year: 2026, media: "videos/IROS2026.mp4", mediaType: "video", poster: "images/IROS2026_poster.jpg", isFirstOrCorr: true, featured: true },
         { title: "CoPE: Continual Probe-guided Expansion for Large Vision-Language Models", authors: "Ziqin Wang*, Hengyuan Zhao*, Qixin Sun*, Kaiyou Song, Yilin Li, Xiaolin Hu, Qingpei Guo, <b>Linjiang Huang†</b>, Si Liu", venue: "ICML 2026", venueColor: "blue", tag: "MLLM", year: 2026, media: "images/CoPE_ICML.jpg", mediaType: "image", paperUrl: "https://openreview.net/pdf?id=ssUgzVTtkB", isFirstOrCorr: true, featured: true },
         { title: "FLUX-Reason-6M & PRISM-Bench: A Million-Scale Text-to-Image Reasoning Dataset and Comprehensive Benchmark", authors: "Rongyao Fang, Aldrich Yu, Chengqi Duan, <b>Linjiang Huang</b>, Shuai Bai, Yuxuan Cai, Kun Wang, Si Liu, Xihui Liu, Hongsheng Li", venue: "ICLR 2026", venueColor: "blue", tag: "Diffusion", year: 2026, media: "images/ICLR2026_Flux-Reason.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2509.09680", isFirstOrCorr: false, featured: false },
         { title: "GoT-R1: Unleashing Reasoning Capability of MLLM for Visual Generation with Reinforcement Learning", authors: "Chengqi Duan, Rongyao Fang, Yuqing Wang, Kun Wang, <b>Linjiang Huang</b>, Xingyu Zeng, Hongsheng Li, Xihui Liu", venue: "ICLR 2026", venueColor: "orange", tag: "Diffusion", year: 2026, media: "images/ICLR2026_GoTR1.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2505.17022", isFirstOrCorr: false, featured: false},
@@ -5492,7 +5735,7 @@
         { title: "NopeRoomGS: Pose-Free Indoor 3D Gaussian Splatting via Local-to-Global Optimization", authors: "Wenbo Li*, Yan Xu*, Mingde Yao, Fengjie Liang, Jiankai Sun, Menglu Wang, Guofeng Zhang, <b>Linjiang Huang</b>, Hongsheng Li", venue: "NeurIPS 2025", venueColor: "purple", tag: "3D Vision", year: 2025, media: "images/NeurIPS2025_NopeRoomGS.png", mediaType: "image", paperUrl: "https://openreview.net/pdf?id=SoPSI570Ap", isFirstOrCorr: false, featured: false },
         { title: "GoT: Unleashing Reasoning Capability of MLLM for Visual Generation and Editing", authors: "Rongyao Fang, Chengqi Duan, Kun Wang, <b>Linjiang Huang</b>, Hao Li, Shilin Yan, Hao Tian, Xingyu Zeng, Rui Zhao, Jifeng Dai, Xihui Liu, Hongsheng Li", venue: "NeurIPS 2025", venueColor: "purple", tag: "MLLM", year: 2025, media: "images/NeurIPS2025_GOT.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2503.10639", codeUrl: "https://github.com/rongyaofang/GoT", isFirstOrCorr: false, featured: false },
         { title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation", authors: "Ruipu Wu, Yige Zhang, Jinyu Chen, <b>Linjiang Huang†</b>, Shifeng Zhang, Xu Zhou, Liang Wang, Si Liu", venue: "MM 2025", venueColor: "blue", tag: "VLN", year: 2025, media: "images/AeroDuo_MM2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2508.15232?", codeUrl: "https://rey-nard.github.io/AeroDuo_project/", isFirstOrCorr: true, featured: true },
-        { title: "Hi AirStar, Guide Me to the Badminton Court.", authors: "Ziqin Wang, Jinyu Chen, Xiangyi Zheng, Qinan Liao, <b>Linjiang Huang†</b>, Si Liu", venue: "MM 2025", venueColor: "blue", tag: "VLN", year: 2025, media: "videos/AirStar_MM2025.mp4", mediaType: "video", paperUrl: "https://arxiv.org/pdf/2507.04430", codeUrl: "https://buaa-colalab.github.io/airstar.github.io/", isFirstOrCorr: true, featured: false },
+        { title: "Hi AirStar, Guide Me to the Badminton Court.", authors: "Ziqin Wang, Jinyu Chen, Xiangyi Zheng, Qinan Liao, <b>Linjiang Huang†</b>, Si Liu", venue: "MM 2025", venueColor: "blue", tag: "VLN", year: 2025, media: "videos/AirStar_MM2025.mp4", mediaType: "video", poster: "images/AirStar_MM2025_poster.jpg", paperUrl: "https://arxiv.org/pdf/2507.04430", codeUrl: "https://buaa-colalab.github.io/airstar.github.io/", isFirstOrCorr: true, featured: false },
         { title: "PUMA: Empowering Unified MLLM with Multi-granular Visual Generation", authors: "Rongyao Fang, Chengqi Duan, Kun Wang, Hao Li, <b>Linjiang Huang</b>, Hao Tian, Xingyu Zeng, Rui Zhao, Jifeng Dai, Hongsheng Li, Xihui Liu", venue: "ICCV 2025", venueColor: "green", tag: "MLLM", year: 2025, media: "images/PUMA_ICCV2025.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/ICCV2025/papers/Fang_PUMA_Empowering_Unified_MLLM_with_Multi-granular_Visual_Generation_ICCV_2025_paper.pdf", codeUrl: "https://github.com/rongyaofang/PUMA", isFirstOrCorr: false, featured: false },
         { title: "FreeDNA: Training-Free Domain Noise Alignment for Domain Adaptation", authors: "Hang Xu, Jie Huang, <b>Linjiang Huang</b>, Dong Li, Yidi Liu, Feng Zhao", venue: "ICCV 2025", venueColor: "green", tag: "Diffusion", year: 2025, media: "images/FreeDNA_ICCV2025.png", mediaType: "image", paperUrl: "https://arxiv.org/pdf/2506.22509", codeUrl: "https://github.com/xuhang07/FreeDNA", isFirstOrCorr: false, featured: false },
         { title: "SOLVE: Synergy of Language-Vision and End-to-End Networks for Autonomous Driving", authors: "Xuesong Chen*, <b>Linjiang Huang*</b>, Tao Ma, Rongyao Fang, Shaoshuai Shi, Hongsheng Li", venue: "CVPR 2025", venueColor: "blue", tag: "Driving", year: 2025, media: "images/CVPR2025_SOLVE.png", mediaType: "image", paperUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Chen_SOLVE_Synergy_of_Language-Vision_and_End-to-End_Networks_for_Autonomous_Driving_CVPR_2025_paper.pdf", isFirstOrCorr: true, featured: true },
@@ -5548,6 +5791,7 @@
 
     const byId = id => document.getElementById(id);
     const mediaSrc = pub => pub.media || placeholder(pub.title);
+    const posterSrc = pub => pub.poster || placeholder(pub.title);
     const hasVideo = pub => pub.mediaType === "video" && !!pub.media;
 
     function placeholder(title) {
@@ -5610,8 +5854,8 @@
     function mediaMarkup(pub, controls = false) {
         if (hasVideo(pub)) {
             return controls
-                ? `<video src="${mediaSrc(pub)}" controls preload="metadata" playsinline onerror="this.poster='${placeholder(pub.title)}'"></video>`
-                : `<video data-src="${mediaSrc(pub)}" muted loop playsinline preload="none" poster="${placeholder(pub.title)}" onerror="this.poster='${placeholder(pub.title)}'"></video>`;
+                ? `<video src="${mediaSrc(pub)}" controls preload="metadata" playsinline poster="${posterSrc(pub)}" onerror="this.poster='${placeholder(pub.title)}'"></video>`
+                : `<video data-src="${mediaSrc(pub)}" muted loop playsinline preload="none" poster="${posterSrc(pub)}" onerror="this.poster='${placeholder(pub.title)}'"></video>`;
         }
         const eager = controls ? ` loading="eager" fetchpriority="high"` : ` loading="lazy"`;
         return `<img src="${mediaSrc(pub)}" alt="${pub.title}" decoding="async"${eager} onerror="this.src='${placeholder(pub.title)}'">`;
@@ -5621,7 +5865,10 @@
         const icons = {
             paper: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M9 13h6M9 16h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`,
             code: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="m13 5-2 14" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>`,
-            copy: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h10v12H8z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6 16H4V4h12v2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+            copy: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h10v12H8z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6 16H4V4h12v2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            email: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            scholar: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 8.5 12 13l9-4.5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6.5 10.5v4.2c0 1.7 2.5 3.3 5.5 3.3s5.5-1.6 5.5-3.3v-4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M21 8.5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`,
+            github: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8a8.3 8.3 0 0 0-2.6 16.2c.4.1.6-.2.6-.4v-1.6c-2.4.5-2.9-1-2.9-1-.4-.9-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-1.9-.2-3.9-.9-3.9-4.1 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.6-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.3 0 3.2-2 3.9-3.9 4.1.3.3.6.8.6 1.6v2.2c0 .2.2.5.6.4A8.3 8.3 0 0 0 12 3.8Z" fill="currentColor"/></svg>`
         };
         return icons[name] || "";
     }
