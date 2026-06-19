@@ -5249,6 +5249,103 @@
             text-align: center;
         }
 
+        .action-link,
+        a.action-link,
+        button.action-link {
+            appearance: none;
+            -webkit-appearance: none;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 7px !important;
+            width: auto;
+            min-width: 0;
+            max-width: 100%;
+            min-height: 31px;
+            padding: 0 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.055), rgba(122,162,247,0.035)),
+                var(--panel-soft);
+            color: color-mix(in srgb, var(--text-soft) 86%, var(--accent-3) 14%);
+            text-decoration: none !important;
+            font-size: 0.74rem;
+            font-weight: 750;
+            line-height: 1 !important;
+            vertical-align: middle;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .action-link:hover,
+        a.action-link:hover,
+        button.action-link:hover {
+            color: var(--text);
+            border-color: color-mix(in srgb, var(--accent-3) 46%, var(--border-strong) 54%);
+            background:
+                linear-gradient(135deg, rgba(122,162,247,0.15), rgba(79,214,181,0.075)),
+                var(--panel-soft);
+            text-decoration: none !important;
+            transform: translateY(-1px);
+        }
+
+        .action-link .action-icon,
+        .action-link .action-label {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex: 0 0 auto;
+            min-width: 0;
+            line-height: 1 !important;
+            text-decoration: none !important;
+        }
+
+        .action-link .action-label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .action-link .link-icon,
+        .action-link svg,
+        .action-link i {
+            display: block !important;
+            width: 15px !important;
+            height: 15px !important;
+            min-width: 15px !important;
+            flex: 0 0 15px !important;
+            color: currentColor;
+            line-height: 1 !important;
+            text-decoration: none !important;
+        }
+
+        .profile-action {
+            min-height: 34px;
+            padding-inline: 11px;
+        }
+
+        [data-theme="light"] .action-link,
+        [data-theme="light"] a.action-link,
+        [data-theme="light"] button.action-link {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.98), rgba(242,245,250,0.82)),
+                #ffffff;
+            border-color: rgba(29, 29, 31, 0.10);
+            color: #596273;
+        }
+
+        [data-theme="light"] .action-link:hover,
+        [data-theme="light"] a.action-link:hover,
+        [data-theme="light"] button.action-link:hover {
+            color: #1f2430;
+            border-color: rgba(37,99,199,0.32);
+            background:
+                linear-gradient(135deg, rgba(37,99,199,0.075), rgba(11,143,122,0.045)),
+                #ffffff;
+        }
+
         .media-box video[poster] {
             background:
                 linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
@@ -5462,6 +5559,7 @@
             .focus-tags .tag-chip,
             .hero-preview .paper-link,
             .paper-link,
+            .action-link,
             .terminal-button {
                 min-height: 28px;
                 padding: 0 8px;
@@ -5629,9 +5727,9 @@
                                                     <span class="tag-chip"><i class="fas fa-wand-magic-sparkles"></i> Diffusion</span>
                                                 </div>
                                                 <div class="paper-links">
-                                                    <a class="paper-link" href="mailto:ljhuang@buaa.edu.cn"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Email</span></a>
-                                                    <a class="paper-link" href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" target="_blank" rel="noopener"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 8.5 12 13l9-4.5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6.5 10.5v4.2c0 1.7 2.5 3.3 5.5 3.3s5.5-1.6 5.5-3.3v-4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M21 8.5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Scholar</span></a>
-                                                    <a class="paper-link" href="https://github.com/LeonHLJ" target="_blank" rel="noopener"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8a8.3 8.3 0 0 0-2.6 16.2c.4.1.6-.2.6-.4v-1.6c-2.4.5-2.9-1-2.9-1-.4-.9-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-1.9-.2-3.9-.9-3.9-4.1 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.6-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.3 0 3.2-2 3.9-3.9 4.1.3.3.6.8.6 1.6v2.2c0 .2.2.5.6.4A8.3 8.3 0 0 0 12 3.8Z" fill="currentColor"/></svg><span>GitHub</span></a>
+                                                    <a class="paper-link action-link profile-action" href="mailto:ljhuang@buaa.edu.cn"><span class="action-icon"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="action-label">Email</span></a>
+                                                    <a class="paper-link action-link profile-action" href="https://scholar.google.com/citations?user=j5rBSw0AAAAJ&hl=zh-CN" target="_blank" rel="noopener"><span class="action-icon"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 8.5 12 13l9-4.5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6.5 10.5v4.2c0 1.7 2.5 3.3 5.5 3.3s5.5-1.6 5.5-3.3v-4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M21 8.5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span><span class="action-label">Scholar</span></a>
+                                                    <a class="paper-link action-link profile-action" href="https://github.com/LeonHLJ" target="_blank" rel="noopener"><span class="action-icon"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8a8.3 8.3 0 0 0-2.6 16.2c.4.1.6-.2.6-.4v-1.6c-2.4.5-2.9-1-2.9-1-.4-.9-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-1.9-.2-3.9-.9-3.9-4.1 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.3 0 0 .7-.2 2.4.9.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.6-1.1 2.4-.9 2.4-.9.5 1.2.2 2.1.1 2.3.6.6.9 1.4.9 2.3 0 3.2-2 3.9-3.9 4.1.3.3.6.8.6 1.6v2.2c0 .2.2.5.6.4A8.3 8.3 0 0 0 12 3.8Z" fill="currentColor"/></svg></span><span class="action-label">GitHub</span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -5874,10 +5972,10 @@
     }
 
     function linkMarkup(pub, detail = false) {
-        const cls = detail ? "paper-link" : "paper-link";
+        const cls = detail ? "paper-link action-link" : "paper-link action-link";
         return `
-            ${pub.paperUrl ? `<a class="${cls}" href="${pub.paperUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${linkIcon("paper")}<span>Paper</span></a>` : ""}
-            ${pub.codeUrl ? `<a class="${cls}" href="${pub.codeUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${linkIcon("code")}<span>Code</span></a>` : ""}
+            ${pub.paperUrl ? `<a class="${cls}" href="${pub.paperUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="action-icon">${linkIcon("paper")}</span><span class="action-label">Paper</span></a>` : ""}
+            ${pub.codeUrl ? `<a class="${cls}" href="${pub.codeUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="action-icon">${linkIcon("code")}</span><span class="action-label">Code</span></a>` : ""}
         `;
     }
 
@@ -6198,7 +6296,7 @@
                     </div>
                     <div class="detail-actions">
                         ${linkMarkup(pub, true)}
-                        <button class="paper-link" type="button" onclick="copyTitle()">${linkIcon("copy")}<span>Title</span></button>
+                        <button class="paper-link action-link" type="button" onclick="copyTitle()"><span class="action-icon">${linkIcon("copy")}</span><span class="action-label">Title</span></button>
                     </div>
                 </div>
             </div>`;
