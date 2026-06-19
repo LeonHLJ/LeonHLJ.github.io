@@ -5164,6 +5164,101 @@
             }
         }
 
+        /* Production hotfixes for GitHub Pages rendering */
+        .hero-code {
+            grid-template-columns: minmax(0, 1fr) minmax(240px, 310px);
+            align-items: start;
+            min-height: 0;
+        }
+
+        .hero-code .code-block {
+            gap: 2px;
+            padding: 4px 0;
+            font-size: clamp(0.76rem, 0.92vw, 0.9rem);
+            line-height: 1.48;
+        }
+
+        .hero-code .code-line {
+            grid-template-columns: 32px minmax(0, 1fr);
+            gap: 10px;
+        }
+
+        .hero-preview {
+            align-self: start;
+        }
+
+        .portrait-panel {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .portrait-panel img {
+            width: 100%;
+            height: clamp(180px, 18vw, 246px);
+            aspect-ratio: auto;
+            object-fit: cover;
+            object-position: 50% 37%;
+            padding: 4px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+                color-mix(in srgb, var(--screen-soft) 80%, #000 20%);
+        }
+
+        .paper-link,
+        .terminal-button,
+        a.paper-link,
+        button.paper-link {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 31px;
+            padding: 0 10px;
+            text-decoration: none !important;
+            line-height: 1;
+        }
+
+        .paper-link .link-icon {
+            width: 15px;
+            height: 15px;
+            flex: 0 0 15px;
+            display: block;
+            color: currentColor;
+        }
+
+        .paper-link i {
+            width: 15px;
+            min-width: 15px;
+            font-size: 0.86rem;
+            line-height: 1;
+            text-align: center;
+        }
+
+        @media (max-width: 880px) {
+            .hero-code {
+                grid-template-columns: 1fr;
+                padding: 12px;
+            }
+
+            .hero-code .code-block {
+                font-size: 0.75rem;
+                line-height: 1.5;
+            }
+
+            .portrait-panel {
+                grid-template-columns: 96px minmax(0, 1fr);
+                align-items: center;
+            }
+
+            .portrait-panel img {
+                height: 96px;
+                aspect-ratio: 1 / 1;
+                padding: 2px;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .ambient-code,
             .ambient-editor::after,
@@ -5522,11 +5617,20 @@
         return `<img src="${mediaSrc(pub)}" alt="${pub.title}" decoding="async"${eager} onerror="this.src='${placeholder(pub.title)}'">`;
     }
 
+    function linkIcon(name) {
+        const icons = {
+            paper: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M9 13h6M9 16h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`,
+            code: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="m13 5-2 14" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>`,
+            copy: `<svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h10v12H8z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M6 16H4V4h12v2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+        };
+        return icons[name] || "";
+    }
+
     function linkMarkup(pub, detail = false) {
         const cls = detail ? "paper-link" : "paper-link";
         return `
-            ${pub.paperUrl ? `<a class="${cls}" href="${pub.paperUrl}" target="_blank" onclick="event.stopPropagation()"><i class="fas fa-file-pdf"></i> Paper</a>` : ""}
-            ${pub.codeUrl ? `<a class="${cls}" href="${pub.codeUrl}" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-github"></i> Code</a>` : ""}
+            ${pub.paperUrl ? `<a class="${cls}" href="${pub.paperUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${linkIcon("paper")}<span>Paper</span></a>` : ""}
+            ${pub.codeUrl ? `<a class="${cls}" href="${pub.codeUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${linkIcon("code")}<span>Code</span></a>` : ""}
         `;
     }
 
@@ -5847,7 +5951,7 @@
                     </div>
                     <div class="detail-actions">
                         ${linkMarkup(pub, true)}
-                        <button class="paper-link" type="button" onclick="copyTitle()"><i class="fas fa-copy"></i> Title</button>
+                        <button class="paper-link" type="button" onclick="copyTitle()">${linkIcon("copy")}<span>Title</span></button>
                     </div>
                 </div>
             </div>`;
