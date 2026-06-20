@@ -6,9 +6,9 @@
     <title>Linjiang Huang - Research Workstation</title>
     <script>
         (function initThemeByTime() {
-            const savedTheme = localStorage.getItem("theme-preference");
             const hour = new Date().getHours();
-            document.documentElement.dataset.theme = savedTheme || (hour >= 7 && hour < 19 ? "light" : "dark");
+            document.documentElement.dataset.theme = hour >= 7 && hour < 19 ? "light" : "dark";
+            document.documentElement.dataset.themeMode = "auto";
         })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -6525,20 +6525,40 @@
             });
         });
 
+        function themeByTime(date = new Date()) {
+            const hour = date.getHours();
+            return hour >= 7 && hour < 19 ? "light" : "dark";
+        }
+
+        function applyAutoThemeByTime() {
+            const root = document.documentElement;
+            if (root.dataset.themeMode === "manual") return;
+            const nextTheme = themeByTime();
+            if (root.dataset.theme !== nextTheme) {
+                root.dataset.theme = nextTheme;
+                syncThemeControl();
+                scheduleArchiveRhythm();
+            }
+        }
+
         function syncThemeControl() {
             const theme = document.documentElement.dataset.theme || "dark";
+            const mode = document.documentElement.dataset.themeMode === "manual" ? "manual" : "auto";
             const label = byId("theme-state");
-            if (label) label.textContent = theme;
+            if (label) label.textContent = `${mode} ${theme}`;
             byId("theme-toggle")?.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
         }
 
+        applyAutoThemeByTime();
         syncThemeControl();
+        window.setInterval(applyAutoThemeByTime, 60 * 1000);
 
         byId("theme-toggle")?.addEventListener("click", () => {
             const root = document.documentElement;
             const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
             root.dataset.theme = nextTheme;
-            localStorage.setItem("theme-preference", nextTheme);
+            root.dataset.themeMode = "manual";
+            try { localStorage.removeItem("theme-preference"); } catch (error) {}
             syncThemeControl();
             scheduleArchiveRhythm();
         });
