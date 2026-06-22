@@ -3134,7 +3134,7 @@
 
         .content::before {
             content:
-                "const papers = workspace.query({ year: 2026, highlight: true });\A"
+                "const recent = sortedPublications(publications).filter(isCorrespondingPublication).slice(0, 5);\A"
                 "render.recent({ mediaFit: 'contain', author: 'Linjiang Huang†' });\A"
                 "for (const paper of publications) align(['venue', 'topic', 'links']);\A"
                 "theme.palette = ['keyword.purple', 'property.blue', 'string.teal'];\A"
@@ -3146,7 +3146,7 @@
                 "media.thumbnail.fit = 'contain';\A"
                 "authors.mark({ first: '*', corresponding: '†' });\A"
                 "viewer.scrollTo(section.current, { behavior: 'smooth' });\A"
-                "const papers = workspace.query({ year: 2026, highlight: true });\A"
+                "const recent = sortedPublications(publications).filter(isCorrespondingPublication).slice(0, 5);\A"
                 "render.recent({ mediaFit: 'contain', author: 'Linjiang Huang†' });\A"
                 "for (const paper of publications) align(['venue', 'topic', 'links']);\A"
                 "theme.palette = ['keyword.purple', 'property.blue', 'string.teal'];\A"
@@ -3158,7 +3158,7 @@
                 "media.thumbnail.fit = 'contain';\A"
                 "authors.mark({ first: '*', corresponding: '†' });\A"
                 "viewer.scrollTo(section.current, { behavior: 'smooth' });\A"
-                "const papers = workspace.query({ year: 2026, highlight: true });\A"
+                "const recent = sortedPublications(publications).filter(isCorrespondingPublication).slice(0, 5);\A"
                 "render.recent({ mediaFit: 'contain', author: 'Linjiang Huang†' });\A"
                 "for (const paper of publications) align(['venue', 'topic', 'links']);\A"
                 "theme.palette = ['keyword.purple', 'property.blue', 'string.teal'];\A"
@@ -3170,7 +3170,7 @@
                 "media.thumbnail.fit = 'contain';\A"
                 "authors.mark({ first: '*', corresponding: '†' });\A"
                 "viewer.scrollTo(section.current, { behavior: 'smooth' });\A"
-                "const papers = workspace.query({ year: 2026, highlight: true });\A"
+                "const recent = sortedPublications(publications).filter(isCorrespondingPublication).slice(0, 5);\A"
                 "render.recent({ mediaFit: 'contain', author: 'Linjiang Huang†' });\A"
                 "for (const paper of publications) align(['venue', 'topic', 'links']);\A"
                 "theme.palette = ['keyword.purple', 'property.blue', 'string.teal'];\A"
@@ -5678,20 +5678,20 @@
                 <div class="screen" id="screen">
                     <div class="ambient-editor" aria-hidden="true">
                         <div class="ambient-code">
-                            <span>const recent = publications.slice(0, 5).map(renderPaper);</span>
+                            <span>const recent = sortedPublications(publications).filter(isCorrespondingPublication).slice(0, 5);</span>
                             <span>author.highlight("Linjiang Huang†");</span>
                             <span>pipeline.topic = ["embodied_ai", "multimodal_learning", "diffusion"];</span>
-                            <span>if (paper.featured) workspace.pin(paper.title);</span>
+                            <span>if (paper.corresponding) workspace.pin(paper.title);</span>
                             <span>render.media({ fit: "contain", radius: 7, tone: "quiet" });</span>
                             <span>news.commit("ECCV 2026 × 4");</span>
                             <span>solver.run("CR-Solver", { device: "GPU", robot: "continuum" });</span>
                             <span>openreview.load("CoPE", { venue: "ICML 2026" });</span>
                             <span>layout.grid({ wrap: true, focus: "recent_publications" });</span>
                             <span>viewer.theme = prefersColorScheme();</span>
-                            <span>const recent = publications.slice(0, 5).map(renderPaper);</span>
+                            <span>const recent = sortedPublications(publications).filter(isCorrespondingPublication).slice(0, 5);</span>
                             <span>author.highlight("Linjiang Huang†");</span>
                             <span>pipeline.topic = ["embodied_ai", "multimodal_learning", "diffusion"];</span>
-                            <span>if (paper.featured) workspace.pin(paper.title);</span>
+                            <span>if (paper.corresponding) workspace.pin(paper.title);</span>
                             <span>render.media({ fit: "contain", radius: 7, tone: "quiet" });</span>
                             <span>news.commit("ECCV 2026 × 4");</span>
                             <span>solver.run("CR-Solver", { device: "GPU", robot: "continuum" });</span>
@@ -5965,6 +5965,32 @@
         return text.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "").slice(0, 34) || "paper";
     }
 
+    const publicationSourceOrder = new Map(publications.map((pub, index) => [pub, index]));
+
+    function plainAuthors(pub) {
+        return (pub.authors || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    }
+
+    function publicationTimeValue(pub) {
+        const dateToken = pub.sortDate || pub.date || pub.acceptedDate;
+        if (dateToken) {
+            const parsed = Date.parse(String(dateToken));
+            if (Number.isFinite(parsed)) return parsed;
+        }
+        return (Number(pub.year) || 0) * 1000 - (publicationSourceOrder.get(pub) ?? 0);
+    }
+
+    function sortedPublications(list = publications) {
+        return [...list].sort((a, b) => {
+            const byTime = publicationTimeValue(b) - publicationTimeValue(a);
+            return byTime || (publicationSourceOrder.get(a) ?? 0) - (publicationSourceOrder.get(b) ?? 0);
+        });
+    }
+
+    function isCorrespondingPublication(pub) {
+        return /Linjiang Huang\s*†/.test(plainAuthors(pub));
+    }
+
     function yearList() {
         return [...new Set(publications.map(pub => pub.year))].sort((a, b) => b - a);
     }
@@ -6073,7 +6099,7 @@
     }
 
     function renderRecent() {
-        const recent = publications.filter(pub => pub.featured === true).slice(0, 5);
+        const recent = recentPublications();
         state.recentIndex = Math.min(state.recentIndex, Math.max(recent.length - 1, 0));
         byId("recent-publications").innerHTML = recent.map((pub, index) => moduleCard(pub, index, publications.indexOf(pub), "recent")).join("");
         byId("recent-dots").innerHTML = recent.map((pub, index) => `<button class="deck-dot" type="button" aria-label="Show ${pub.title}" data-recent-dot="${index}">${String(index + 1).padStart(2, "0")}</button>`).join("");
@@ -6088,7 +6114,7 @@
     }
 
     function recentPublications() {
-        return publications.filter(pub => pub.featured === true).slice(0, 5);
+        return sortedPublications().filter(isCorrespondingPublication).slice(0, 5);
     }
 
     function updateRecentDeck(syncSelection = true) {
@@ -6172,7 +6198,8 @@
         byId("pub-search").value = "";
         syncFilterButtons();
         renderAll();
-        updateSelection(0);
+        const first = state.filtered[0] || sortedPublications()[0];
+        if (first) updateSelection(publications.indexOf(first));
     }
 
     function focusYear(year) {
@@ -6188,7 +6215,7 @@
     }
 
     function filteredPublications() {
-        let pubs = [...publications];
+        let pubs = sortedPublications();
         if (state.year !== "all") pubs = pubs.filter(pub => String(pub.year) === state.year);
         if (state.topic !== "all") pubs = pubs.filter(pub => pub.tag === state.topic);
         if (state.query) {
@@ -6360,7 +6387,7 @@
     }
 
     function navigateDetail(delta) {
-        const list = state.filtered.length ? state.filtered : publications;
+        const list = state.filtered.length ? state.filtered : sortedPublications();
         state.detailIndex = (state.detailIndex + delta + list.length) % list.length;
         renderDetail(list[state.detailIndex]);
     }
@@ -6372,7 +6399,7 @@
     }
 
     function copyTitle() {
-        const list = state.filtered.length ? state.filtered : publications;
+        const list = state.filtered.length ? state.filtered : sortedPublications();
         const pub = list[state.detailIndex];
         if (pub) navigator.clipboard?.writeText(pub.title);
     }
@@ -6424,7 +6451,7 @@
 
     function renderPalette() {
         const query = state.paletteQuery.toLowerCase();
-        const list = publications
+        const list = sortedPublications()
             .filter(pub => !query || `${pub.title} ${textOnly(pub.authors)} ${pub.venue} ${pub.tag}`.toLowerCase().includes(query))
             .slice(0, 9);
         byId("palette-results").innerHTML = list.map(pub => {
@@ -6605,7 +6632,10 @@
     renderFilters();
     renderAll();
     renderNews();
-    updateSelection(0);
+    {
+        const first = state.filtered[0] || sortedPublications()[0];
+        if (first) updateSelection(publications.indexOf(first));
+    }
     bindInteractions();
     startRecentAuto();
     document.fonts?.ready?.then(scheduleArchiveRhythm);
